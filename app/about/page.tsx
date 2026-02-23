@@ -47,17 +47,24 @@ const expertise = [
 
 const education = [
   {
-    year: "1994–1999",
-    degree: "Специалист (математика / информатика)",
+    year: "до 2005",
+    degree: "Специалист — Физический факультет",
     institution: "МГУ им. М.В. Ломоносова",
     country: "RU",
   },
   {
-    year: "2010",
-    degree: "MBA — Управление IT-проектами",
-    institution: "Высшая школа экономики",
+    year: "до 2007",
+    degree: "Аспирантура",
+    institution: "МГУПИ",
     country: "RU",
   },
+];
+
+const courses = [
+  { year: "2024", title: "Сложные переговоры", institution: "Сколково" },
+  { year: "2017", title: "Blockchain для бизнеса", institution: "ВШЭ" },
+  { year: "2016", title: "PMP, управление проектами, ITIL Foundation", institution: "IT-Expert" },
+  { year: "2014", title: "NLP в бизнесе", institution: "ВШЭ" },
 ];
 
 const languages = [
@@ -217,10 +224,10 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Education & Languages */}
+      {/* Education, Courses & Languages */}
       <section className="bg-[#F8FAFC] py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-10">
+          <div className="grid md:grid-cols-3 gap-10">
             {/* Education */}
             <div>
               <div className="flex items-center gap-3 mb-6">
@@ -240,6 +247,27 @@ export default function AboutPage() {
                       {edu.degree}
                     </p>
                     <p className="text-sm text-[#64748B]">{edu.institution}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Courses */}
+            <div>
+              <div className="flex items-center gap-3 mb-6">
+                <GraduationCap size={24} className="text-[#F59E0B]" />
+                <h2 className="text-xl font-bold text-[#0F172A]">Курсы</h2>
+              </div>
+              <div className="space-y-3">
+                {courses.map((c, i) => (
+                  <div
+                    key={i}
+                    className="bg-white rounded-2xl border border-slate-200 p-4"
+                  >
+                    <p className="text-xs text-[#F59E0B] font-semibold mb-0.5">
+                      {c.year} · {c.institution}
+                    </p>
+                    <p className="text-sm font-medium text-[#0F172A]">{c.title}</p>
                   </div>
                 ))}
               </div>
