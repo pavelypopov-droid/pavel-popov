@@ -128,7 +128,7 @@ export default function ContactsPage() {
                   моём календаре.
                 </p>
                 <a
-                  href="https://calendly.com/pavel-popov/30min"
+                  href="https://calendly.com/pavelypopov"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-[#2563EB] text-white font-semibold py-2.5 px-5 rounded-xl hover:bg-[#1d4ed8] transition-colors text-sm"

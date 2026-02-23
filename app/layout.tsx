@@ -13,7 +13,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://pavel-popov.consulting"),
+  metadataBase: new URL("https://beyondcore.pro"),
   title: {
     default:
       "Павел Попов — IT & FinTech консультант, AI эксперт, Центральная Азия",
@@ -31,12 +31,12 @@ export const metadata: Metadata = {
     "IT стратегия банк",
     "AI внедрение FinTech",
   ],
-  authors: [{ name: "Павел Попов", url: "https://pavel-popov.consulting" }],
+  authors: [{ name: "Павел Попов", url: "https://beyondcore.pro" }],
   creator: "Павел Попов",
   openGraph: {
     type: "website",
     locale: "ru_RU",
-    url: "https://pavel-popov.consulting",
+    url: "https://beyondcore.pro",
     siteName: "Павел Попов — IT & FinTech Advisor",
     title: "Павел Попов — IT & FinTech консультант, AI эксперт",
     description:
@@ -68,10 +68,10 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://pavel-popov.consulting",
+    canonical: "https://beyondcore.pro",
     languages: {
-      ru: "https://pavel-popov.consulting",
-      en: "https://pavel-popov.consulting/en",
+      ru: "https://beyondcore.pro",
+      en: "https://beyondcore.pro/en",
     },
   },
 };

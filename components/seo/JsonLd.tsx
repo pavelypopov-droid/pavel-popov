@@ -4,7 +4,7 @@ export default function JsonLd() {
     "@type": "Person",
     name: "Павел Попов",
     jobTitle: "IT & FinTech Advisor, AI Expert",
-    url: "https://pavel-popov.consulting",
+    url: "https://beyondcore.pro",
     email: "popov@iofm.ru",
     telephone: "+998951480206",
     address: {
@@ -36,7 +36,7 @@ export default function JsonLd() {
       "Международный IT консультант и AI эксперт с 25-летним опытом в FinTech. Цифровая трансформация, AI внедрение, DWH, RegTech под ключ.",
     serviceType: ["IT Consulting", "AI Implementation", "FinTech Advisory"],
     areaServed: ["UZ", "KZ", "KG", "TJ", "TM", "AZ"],
-    url: "https://pavel-popov.consulting",
+    url: "https://beyondcore.pro",
   };
 
   return (
