@@ -64,8 +64,8 @@ export default function Footer() {
             </div>
             <p className="text-sm text-slate-400 leading-relaxed mb-6">
               {isEn
-                ? "International IT & FinTech Advisor with 25+ years of experience. End-to-end digital transformations for banks and fintech companies across Central Asia."
-                : "Международный IT & FinTech консультант с 25-летним опытом. Цифровые трансформации под ключ для банков и финтех-компаний Центральной Азии."}
+                ? "International IT Advisor with 25+ years of experience. Digital transformations for banks, telecom and public sector across Central Asia."
+                : "Международный IT консультант с 25-летним опытом. Цифровые трансформации для банков, телекома и государственного сектора Центральной Азии."}
             </p>
             <div className="flex items-center gap-3">
               <a

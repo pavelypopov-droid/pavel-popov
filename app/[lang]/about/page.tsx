@@ -121,9 +121,9 @@ export default async function AboutPage({ params }: Props) {
           <div className="space-y-4 text-[#374151] leading-relaxed text-lg">
             {isEn ? (
               <>
-                <p>25 years in IT and FinTech across Russia and Central Asia. Started as a developer, grew to CIO of major banks. Went all the way from writing code to managing IT strategy at board level.</p>
-                <p>Founded and built AI practices in several organisations. Was implementing machine learning when it was still called <em>data mining</em>. Today I work with modern LLMs and build speech analytics systems for banks in CA.</p>
-                <p>Independent advisor since 2022. I work at the intersection of strategy and execution — helping not just to design, but to deliver. I know the CA market from the inside: regulations, technology landscape, hiring specifics and culture.</p>
+                <p>25 years in IT across Russia and Central Asia. Started as a developer, grew to CIO of major banks. Went all the way from writing code to managing IT strategy at board level.</p>
+                <p>Founded and built AI practices in several organisations. Was implementing machine learning when it was still called <em>data mining</em>. Today I work with modern LLMs, build speech analytics and automate processes for banks, telecom operators and government organisations across CA.</p>
+                <p>Independent advisor since 2022. I work at the intersection of strategy and execution — helping not just to design, but to deliver. I know the CA market from the inside: sector-specific regulations, technology landscape, hiring specifics and culture.</p>
               </>
             ) : (
               <>
