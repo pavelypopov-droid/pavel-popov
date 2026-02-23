@@ -1,0 +1,164 @@
+import Link from "next/link";
+import { Mail, Phone, MapPin, Linkedin, Send } from "lucide-react";
+
+const serviceLinks = [
+  { href: "/services#ai", label: "AI Implementation" },
+  { href: "/services#strategy", label: "IT & Digital Strategy" },
+  { href: "/services#teams", label: "FinTech Team Assembly" },
+  { href: "/services#delivery", label: "Turnkey Delivery" },
+  { href: "/services#regtech", label: "RegTech & Compliance" },
+  { href: "/services#cto", label: "CTO-as-a-Service" },
+];
+
+const navLinks = [
+  { href: "/", label: "Главная" },
+  { href: "/cases", label: "Кейсы" },
+  { href: "/about", label: "О себе" },
+  { href: "/blog", label: "Блог" },
+  { href: "/contacts", label: "Контакты" },
+];
+
+export default function Footer() {
+  return (
+    <footer className="bg-[#0F172A] text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+          {/* Col 1: Brand */}
+          <div className="lg:col-span-1">
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-9 h-9 rounded-lg bg-[#2563EB] flex items-center justify-center">
+                <span className="text-white font-bold text-base">PP</span>
+              </div>
+              <div>
+                <p className="font-bold text-base leading-tight">Павел Попов</p>
+                <p className="text-xs text-blue-300 leading-tight">IT & FinTech Advisor</p>
+              </div>
+            </div>
+            <p className="text-sm text-slate-400 leading-relaxed mb-6">
+              Международный IT & FinTech консультант с 25-летним опытом. Цифровые
+              трансформации под ключ для банков и финтех-компаний Центральной Азии.
+            </p>
+            <div className="flex items-center gap-3">
+              <a
+                href="https://linkedin.com/in/pavel-popov"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-lg bg-slate-800 hover:bg-[#2563EB] flex items-center justify-center transition-colors"
+                aria-label="LinkedIn"
+              >
+                <Linkedin size={16} />
+              </a>
+              <a
+                href="https://t.me/pavel_popov_consulting"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-lg bg-slate-800 hover:bg-[#2563EB] flex items-center justify-center transition-colors"
+                aria-label="Telegram"
+              >
+                <Send size={16} />
+              </a>
+            </div>
+          </div>
+
+          {/* Col 2: Services */}
+          <div>
+            <h3 className="font-semibold text-sm uppercase tracking-wider text-slate-400 mb-4">
+              Услуги
+            </h3>
+            <ul className="space-y-2">
+              {serviceLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-slate-300 hover:text-white transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Col 3: Navigation */}
+          <div>
+            <h3 className="font-semibold text-sm uppercase tracking-wider text-slate-400 mb-4">
+              Навигация
+            </h3>
+            <ul className="space-y-2">
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-slate-300 hover:text-white transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Col 4: Contacts */}
+          <div>
+            <h3 className="font-semibold text-sm uppercase tracking-wider text-slate-400 mb-4">
+              Контакты
+            </h3>
+            <ul className="space-y-3">
+              <li>
+                <a
+                  href="mailto:popov@iofm.ru"
+                  className="flex items-center gap-2 text-sm text-slate-300 hover:text-white transition-colors"
+                >
+                  <Mail size={14} className="text-[#2563EB] shrink-0" />
+                  popov@iofm.ru
+                </a>
+              </li>
+              <li>
+                <a
+                  href="tel:+998951480206"
+                  className="flex items-center gap-2 text-sm text-slate-300 hover:text-white transition-colors"
+                >
+                  <Phone size={14} className="text-[#2563EB] shrink-0" />
+                  +998 95 148 02 06
+                </a>
+              </li>
+              <li>
+                <a
+                  href="tel:+79255064560"
+                  className="flex items-center gap-2 text-sm text-slate-300 hover:text-white transition-colors"
+                >
+                  <Phone size={14} className="text-[#2563EB] shrink-0" />
+                  +7 925 506 45 60
+                </a>
+              </li>
+              <li className="flex items-start gap-2 text-sm text-slate-300">
+                <MapPin size={14} className="text-[#2563EB] shrink-0 mt-0.5" />
+                Ташкент, Узбекистан / Remote
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="border-t border-slate-800 mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-sm text-slate-400">
+            © {new Date().getFullYear()} Павел Попов. Все права защищены.
+          </p>
+          <div className="flex items-center gap-4">
+            <Link
+              href="/privacy"
+              className="text-sm text-slate-400 hover:text-white transition-colors"
+            >
+              Политика конфиденциальности
+            </Link>
+            <Link
+              href="/en"
+              className="text-sm text-slate-400 hover:text-white transition-colors"
+            >
+              EN
+            </Link>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
