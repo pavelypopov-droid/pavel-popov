@@ -54,7 +54,7 @@ export async function POST(req: NextRequest) {
     const resend = new Resend(resendApiKey);
 
     await resend.emails.send({
-      from: "site@pavel-popov.consulting",
+      from: "site@beyondcore.pro",
       to: "popov@iofm.ru",
       subject: `Новое обращение: ${subject || "с сайта"} — ${name}`,
       html: `
