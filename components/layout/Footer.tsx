@@ -1,7 +1,10 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Mail, Phone, MapPin, Linkedin, Send } from "lucide-react";
 
-const serviceLinks = [
+const serviceLinksRu = [
   { href: "/services#ai", label: "AI Implementation" },
   { href: "/services#strategy", label: "IT & Digital Strategy" },
   { href: "/services#teams", label: "FinTech Team Assembly" },
@@ -10,7 +13,16 @@ const serviceLinks = [
   { href: "/services#cto", label: "CTO-as-a-Service" },
 ];
 
-const navLinks = [
+const serviceLinksEn = [
+  { href: "/en/services#ai", label: "AI Implementation" },
+  { href: "/en/services#strategy", label: "IT & Digital Strategy" },
+  { href: "/en/services#teams", label: "FinTech Team Assembly" },
+  { href: "/en/services#delivery", label: "Turnkey Delivery" },
+  { href: "/en/services#regtech", label: "RegTech & DWH" },
+  { href: "/en/services#cto", label: "CTO-as-a-Service" },
+];
+
+const navLinksRu = [
   { href: "/", label: "Главная" },
   { href: "/cases", label: "Кейсы" },
   { href: "/about", label: "О себе" },
@@ -18,7 +30,21 @@ const navLinks = [
   { href: "/contacts", label: "Контакты" },
 ];
 
+const navLinksEn = [
+  { href: "/en", label: "Home" },
+  { href: "/en/cases", label: "Cases" },
+  { href: "/en/about", label: "About" },
+  { href: "/en/blog", label: "Blog" },
+  { href: "/en/contacts", label: "Contact" },
+];
+
 export default function Footer() {
+  const pathname = usePathname();
+  const isEn = pathname.startsWith("/en");
+
+  const serviceLinks = isEn ? serviceLinksEn : serviceLinksRu;
+  const navLinks = isEn ? navLinksEn : navLinksRu;
+
   return (
     <footer className="bg-[#0F172A] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -30,13 +56,16 @@ export default function Footer() {
                 <span className="text-white font-bold text-base">PP</span>
               </div>
               <div>
-                <p className="font-bold text-base leading-tight">Павел Попов</p>
+                <p className="font-bold text-base leading-tight">
+                  {isEn ? "Pavel Popov" : "Павел Попов"}
+                </p>
                 <p className="text-xs text-blue-300 leading-tight">IT & FinTech Advisor</p>
               </div>
             </div>
             <p className="text-sm text-slate-400 leading-relaxed mb-6">
-              Международный IT & FinTech консультант с 25-летним опытом. Цифровые
-              трансформации под ключ для банков и финтех-компаний Центральной Азии.
+              {isEn
+                ? "International IT & FinTech Advisor with 25+ years of experience. End-to-end digital transformations for banks and fintech companies across Central Asia."
+                : "Международный IT & FinTech консультант с 25-летним опытом. Цифровые трансформации под ключ для банков и финтех-компаний Центральной Азии."}
             </p>
             <div className="flex items-center gap-3">
               <a
@@ -63,7 +92,7 @@ export default function Footer() {
           {/* Col 2: Services */}
           <div>
             <h3 className="font-semibold text-sm uppercase tracking-wider text-slate-400 mb-4">
-              Услуги
+              {isEn ? "Services" : "Услуги"}
             </h3>
             <ul className="space-y-2">
               {serviceLinks.map((link) => (
@@ -82,7 +111,7 @@ export default function Footer() {
           {/* Col 3: Navigation */}
           <div>
             <h3 className="font-semibold text-sm uppercase tracking-wider text-slate-400 mb-4">
-              Навигация
+              {isEn ? "Navigation" : "Навигация"}
             </h3>
             <ul className="space-y-2">
               {navLinks.map((link) => (
@@ -101,7 +130,7 @@ export default function Footer() {
           {/* Col 4: Contacts */}
           <div>
             <h3 className="font-semibold text-sm uppercase tracking-wider text-slate-400 mb-4">
-              Контакты
+              {isEn ? "Contact" : "Контакты"}
             </h3>
             <ul className="space-y-3">
               <li>
@@ -133,7 +162,7 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-2 text-sm text-slate-300">
                 <MapPin size={14} className="text-[#2563EB] shrink-0 mt-0.5" />
-                Ташкент, Узбекистан / Remote
+                {isEn ? "Tashkent, Uzbekistan / Remote" : "Ташкент, Узбекистан / Remote"}
               </li>
             </ul>
           </div>
@@ -141,20 +170,22 @@ export default function Footer() {
 
         <div className="border-t border-slate-800 mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-slate-400">
-            © {new Date().getFullYear()} Павел Попов. Все права защищены.
+            {isEn
+              ? `© ${new Date().getFullYear()} Pavel Popov. All rights reserved.`
+              : `© ${new Date().getFullYear()} Павел Попов. Все права защищены.`}
           </p>
           <div className="flex items-center gap-4">
             <Link
-              href="/privacy"
+              href={isEn ? "/en/privacy" : "/privacy"}
               className="text-sm text-slate-400 hover:text-white transition-colors"
             >
-              Политика конфиденциальности
+              {isEn ? "Privacy Policy" : "Политика конфиденциальности"}
             </Link>
             <Link
-              href="/en"
+              href={isEn ? "/" : "/en"}
               className="text-sm text-slate-400 hover:text-white transition-colors"
             >
-              EN
+              {isEn ? "RU" : "EN"}
             </Link>
           </div>
         </div>
