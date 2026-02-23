@@ -49,7 +49,7 @@ export default function Footer() {
                 <Linkedin size={16} />
               </a>
               <a
-                href="https://t.me/pavel_popov_consulting"
+                href="https://t.me/popov_pa_uz"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-lg bg-slate-800 hover:bg-[#2563EB] flex items-center justify-center transition-colors"

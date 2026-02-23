@@ -2,46 +2,48 @@ import type { Metadata } from "next";
 import { Mail, Phone, MapPin, Linkedin, Send } from "lucide-react";
 import ContactForm from "@/components/ui/ContactForm";
 
-export const metadata: Metadata = {
-  title: "Контакты",
-  description:
-    "Обсудим вашу задачу. Бесплатная первичная консультация с IT & FinTech консультантом Павлом Поповым.",
-};
+interface Props { params: Promise<{ lang: string }> }
 
-export default function ContactsPage() {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { lang } = await params;
+  return lang === "en"
+    ? { title: "Contacts | Pavel Popov", description: "Let's discuss your project. Free initial consultation with IT & FinTech Advisor Pavel Popov." }
+    : { title: "Контакты | Павел Попов" };
+}
+
+export default async function ContactsPage({ params }: Props) {
+  const { lang } = await params;
+  const isEn = lang === "en";
+
   return (
     <>
-      {/* Hero */}
       <section className="bg-[#0F172A] pt-32 pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="text-sm font-semibold text-blue-400 uppercase tracking-widest">
-            Контакты
+            {isEn ? "Contact" : "Контакты"}
           </span>
           <h1 className="mt-2 text-4xl sm:text-5xl font-bold text-white">
-            Давайте обсудим вашу задачу
+            {isEn ? "Let's discuss your project" : "Давайте обсудим вашу задачу"}
           </h1>
           <p className="mt-4 text-lg text-slate-400 max-w-2xl mx-auto">
-            Заполните форму или напишите напрямую — отвечу в течение 24 часов
+            {isEn
+              ? "Fill in the form or reach out directly — I'll respond within 24 hours"
+              : "Заполните форму или напишите напрямую — отвечу в течение 24 часов"}
           </p>
         </div>
       </section>
 
-      {/* Content */}
       <section className="bg-[#F8FAFC] py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-5 gap-12">
-            {/* Left: Info */}
             <div className="lg:col-span-2 flex flex-col gap-8">
               <div>
                 <h2 className="text-xl font-bold text-[#0F172A] mb-4">
-                  Контактная информация
+                  {isEn ? "Contact Information" : "Контактная информация"}
                 </h2>
                 <ul className="space-y-4">
                   <li>
-                    <a
-                      href="mailto:popov@iofm.ru"
-                      className="flex items-center gap-3 text-[#374151] hover:text-[#2563EB] transition-colors"
-                    >
+                    <a href="mailto:popov@iofm.ru" className="flex items-center gap-3 text-[#374151] hover:text-[#2563EB] transition-colors">
                       <div className="w-10 h-10 rounded-xl bg-[#EFF6FF] flex items-center justify-center shrink-0">
                         <Mail size={18} className="text-[#2563EB]" />
                       </div>
@@ -52,29 +54,23 @@ export default function ContactsPage() {
                     </a>
                   </li>
                   <li>
-                    <a
-                      href="tel:+998951480206"
-                      className="flex items-center gap-3 text-[#374151] hover:text-[#2563EB] transition-colors"
-                    >
+                    <a href="tel:+998951480206" className="flex items-center gap-3 text-[#374151] hover:text-[#2563EB] transition-colors">
                       <div className="w-10 h-10 rounded-xl bg-[#EFF6FF] flex items-center justify-center shrink-0">
                         <Phone size={18} className="text-[#2563EB]" />
                       </div>
                       <div>
-                        <p className="text-xs text-[#64748B] font-medium">Телефон (UZ)</p>
+                        <p className="text-xs text-[#64748B] font-medium">{isEn ? "Phone (UZ)" : "Телефон (UZ)"}</p>
                         <p className="text-sm font-semibold">+998 95 148 02 06</p>
                       </div>
                     </a>
                   </li>
                   <li>
-                    <a
-                      href="tel:+79255064560"
-                      className="flex items-center gap-3 text-[#374151] hover:text-[#2563EB] transition-colors"
-                    >
+                    <a href="tel:+79255064560" className="flex items-center gap-3 text-[#374151] hover:text-[#2563EB] transition-colors">
                       <div className="w-10 h-10 rounded-xl bg-[#EFF6FF] flex items-center justify-center shrink-0">
                         <Phone size={18} className="text-[#2563EB]" />
                       </div>
                       <div>
-                        <p className="text-xs text-[#64748B] font-medium">Телефон (RU)</p>
+                        <p className="text-xs text-[#64748B] font-medium">{isEn ? "Phone (RU)" : "Телефон (RU)"}</p>
                         <p className="text-sm font-semibold">+7 925 506 45 60</p>
                       </div>
                     </a>
@@ -84,17 +80,16 @@ export default function ContactsPage() {
                       <MapPin size={18} className="text-[#2563EB]" />
                     </div>
                     <div>
-                      <p className="text-xs text-[#64748B] font-medium">Локация</p>
-                      <p className="text-sm font-semibold">Ташкент, Узбекистан / Remote</p>
+                      <p className="text-xs text-[#64748B] font-medium">{isEn ? "Location" : "Локация"}</p>
+                      <p className="text-sm font-semibold">{isEn ? "Tashkent, Uzbekistan / Remote" : "Ташкент, Узбекистан / Remote"}</p>
                     </div>
                   </li>
                 </ul>
               </div>
 
-              {/* Social */}
               <div>
                 <h3 className="text-sm font-semibold text-[#64748B] uppercase tracking-wider mb-4">
-                  Соцсети
+                  {isEn ? "Social" : "Соцсети"}
                 </h3>
                 <div className="flex gap-3">
                   <a
@@ -118,14 +113,14 @@ export default function ContactsPage() {
                 </div>
               </div>
 
-              {/* Calendly */}
               <div className="bg-white rounded-2xl border border-slate-200 p-6">
                 <h3 className="text-base font-bold text-[#0F172A] mb-2">
-                  Запишитесь на встречу
+                  {isEn ? "Book a meeting" : "Запишитесь на встречу"}
                 </h3>
                 <p className="text-sm text-[#64748B] mb-4">
-                  Выберите удобное время для 30-минутной консультации прямо в
-                  моём календаре.
+                  {isEn
+                    ? "Pick a convenient time for a 30-minute consultation directly in my calendar."
+                    : "Выберите удобное время для 30-минутной консультации прямо в моём календаре."}
                 </p>
                 <a
                   href="https://calendly.com/pavelypopov"
@@ -133,12 +128,11 @@ export default function ContactsPage() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-[#2563EB] text-white font-semibold py-2.5 px-5 rounded-xl hover:bg-[#1d4ed8] transition-colors text-sm"
                 >
-                  Открыть Calendly →
+                  {isEn ? "Open Calendly →" : "Открыть Calendly →"}
                 </a>
               </div>
             </div>
 
-            {/* Right: Form */}
             <div className="lg:col-span-3">
               <ContactForm />
             </div>

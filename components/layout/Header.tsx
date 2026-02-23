@@ -2,10 +2,11 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import Button from "@/components/ui/Button";
 
-const navLinks = [
+const navLinksRu = [
   { href: "/services", label: "Услуги" },
   { href: "/cases", label: "Кейсы" },
   { href: "/about", label: "О себе" },
@@ -13,9 +14,45 @@ const navLinks = [
   { href: "/contacts", label: "Контакты" },
 ];
 
-export default function Header() {
+const navLinksEn = [
+  { href: "/en/services", label: "Services" },
+  { href: "/en/cases", label: "Cases" },
+  { href: "/en/about", label: "About" },
+  { href: "/en/blog", label: "Blog" },
+  { href: "/en/contacts", label: "Contact" },
+];
+
+function getAlternateLang(pathname: string): { href: string; label: string } {
+  if (pathname.startsWith("/en")) {
+    // Switch to RU: remove /en prefix
+    const ruPath = pathname.replace(/^\/en/, "") || "/";
+    return { href: ruPath, label: "RU" };
+  } else {
+    // Switch to EN: add /en prefix
+    const enPath = "/en" + (pathname === "/" ? "" : pathname);
+    return { href: enPath, label: "EN" };
+  }
+}
+
+interface Props {
+  lang?: "ru" | "en";
+}
+
+export default function Header({ lang }: Props) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
+
+  // Auto-detect language from pathname if not explicitly provided
+  const detectedLang = lang ?? (pathname.startsWith("/en") ? "en" : "ru");
+  const isEn = detectedLang === "en";
+
+  const navLinks = isEn ? navLinksEn : navLinksRu;
+  const alternate = getAlternateLang(pathname);
+  const contactHref = isEn ? "/en/contacts" : "/contacts";
+  const ctaLabel = isEn ? "Discuss project" : "Обсудить проект";
+  const logoName = isEn ? "Pavel Popov" : "Павел Попов";
+  const homeHref = isEn ? "/en" : "/";
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);
@@ -34,10 +71,7 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <Link
-            href="/"
-            className="flex items-center gap-2 group"
-          >
+          <Link href={homeHref} className="flex items-center gap-2 group">
             <div className="w-9 h-9 rounded-lg bg-[#2563EB] flex items-center justify-center">
               <span className="text-white font-bold text-base">PP</span>
             </div>
@@ -47,7 +81,7 @@ export default function Header() {
                   scrolled ? "text-[#0F172A]" : "text-white"
                 }`}
               >
-                Павел Попов
+                {logoName}
               </p>
               <p
                 className={`text-xs leading-tight transition-colors ${
@@ -78,13 +112,19 @@ export default function Header() {
 
           {/* Right actions */}
           <div className="hidden lg:flex items-center gap-3">
-            <Link href="/en" className={`text-sm font-medium transition-colors ${
-              scrolled ? "text-[#64748B] hover:text-[#2563EB]" : "text-white/70 hover:text-white"
-            }`}>
-              EN
+            {/* Language switcher */}
+            <Link
+              href={alternate.href}
+              className={`text-sm font-semibold px-2.5 py-1 rounded-lg border transition-colors ${
+                scrolled
+                  ? "border-slate-200 text-[#64748B] hover:text-[#2563EB] hover:border-[#2563EB]"
+                  : "border-white/30 text-white/80 hover:text-white hover:border-white/60"
+              }`}
+            >
+              {alternate.label}
             </Link>
-            <Link href="/contacts">
-              <Button size="sm">Обсудить проект</Button>
+            <Link href={contactHref}>
+              <Button size="sm">{ctaLabel}</Button>
             </Link>
           </div>
 
@@ -94,7 +134,7 @@ export default function Header() {
               scrolled ? "text-[#374151]" : "text-white"
             }`}
             onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Меню"
+            aria-label="Menu"
           >
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -116,9 +156,15 @@ export default function Header() {
               </Link>
             ))}
             <div className="pt-2 border-t border-slate-100 mt-2 flex items-center justify-between">
-              <Link href="/en" className="text-sm text-[#64748B]">English</Link>
-              <Link href="/contacts" onClick={() => setMobileOpen(false)}>
-                <Button size="sm">Обсудить проект</Button>
+              <Link
+                href={alternate.href}
+                onClick={() => setMobileOpen(false)}
+                className="text-sm font-semibold text-[#64748B] hover:text-[#2563EB] transition-colors"
+              >
+                {alternate.label === "EN" ? "English" : "Русский"}
+              </Link>
+              <Link href={contactHref} onClick={() => setMobileOpen(false)}>
+                <Button size="sm">{ctaLabel}</Button>
               </Link>
             </div>
           </div>

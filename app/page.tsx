@@ -1,21 +1,21 @@
 import Hero from "@/components/sections/Hero";
 import SocialProof from "@/components/sections/SocialProof";
-import Services from "@/components/sections/Services";
-import Cases from "@/components/sections/Cases";
-import About from "@/components/sections/About";
+import ServicesSection from "@/components/sections/ServicesSection";
+import CasesSection from "@/components/sections/CasesSection";
+import AboutSection from "@/components/sections/AboutSection";
 import Testimonials from "@/components/sections/Testimonials";
 import CTABlock from "@/components/sections/CTABlock";
 
 export default function Home() {
   return (
     <>
-      <Hero />
+      <Hero lang="ru" />
       <SocialProof />
-      <Services />
-      <Cases />
-      <About />
+      <ServicesSection lang="ru" />
+      <CasesSection lang="ru" />
+      <AboutSection lang="ru" />
       <Testimonials />
-      <CTABlock />
+      <CTABlock lang="ru" />
     </>
   );
 }
