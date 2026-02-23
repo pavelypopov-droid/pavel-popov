@@ -75,6 +75,19 @@ export const metadata: Metadata = {
       en: "https://beyondcore.pro/en",
     },
   },
+  icons: {
+    icon: [
+      { url: "/favicon-16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+    other: [
+      { rel: "icon", url: "/icon-192.png", sizes: "192x192" },
+      { rel: "icon", url: "/icon-512.png", sizes: "512x512" },
+    ],
+  },
 };
 
 export default function RootLayout({
