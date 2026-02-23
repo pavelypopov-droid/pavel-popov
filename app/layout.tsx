@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import JsonLd from "@/components/seo/JsonLd";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({
   subsets: ["latin", "cyrillic"],
@@ -85,6 +86,7 @@ export default function RootLayout({
     <html lang="ru" className={inter.variable}>
       <body className="antialiased">
         <JsonLd />
+        <SpeedInsights />
         <Header />
         <main>{children}</main>
         <Footer />
