@@ -1,0 +1,54 @@
+---
+title: "Bank DWH: Build vs Buy"
+excerpt: "When to build your own data warehouse and when to buy a ready-made solution — a balanced analysis based on real CA banking projects."
+category: "Data"
+date: "2024-12-15"
+readTime: "10 min"
+---
+
+The "build or buy" question for a DWH is one of the most expensive architectural decisions a bank will make. Getting it wrong costs $1–5M and 2–4 years.
+
+## When to Buy a Ready-Made Solution
+
+**Small and mid-sized banks (up to $1B in assets)**
+
+Build costs are hard to justify. Off-the-shelf solutions (Teradata, Snowflake, Oracle DWH) deliver 80% of the functionality you need without the risk.
+
+**When there is no internal data team**
+
+A DWH built on custom architecture without a team to own it becomes technical debt. If you don't have a data architect and 3–5 engineers — buy.
+
+**Tight deadlines**
+
+A DWH pilot on a ready-made solution takes 3–6 months. Custom development takes 12–24 months.
+
+## When to Build
+
+**Large banks with unique requirements**
+
+Specific regulatory reporting, complex integration with legacy systems, performance requirements that off-the-shelf solutions can't meet.
+
+**Import substitution strategy**
+
+Migration to domestic databases (Postgres Pro, ClickHouse) requires custom development.
+
+**When data is a core competitive advantage**
+
+If analytics and ML are the business core, not a support function.
+
+## The Hybrid Approach (What I Recommend Most Often)
+
+1. **Operational DWH** — a ready-made solution for regulatory reporting
+2. **Analytical Layer** — custom build on ClickHouse/BigQuery for ML
+3. **Data Catalog** — open-source OpenMetadata/DataHub
+
+This approach gives you speed to launch plus flexibility for analytical workloads.
+
+## Common Mistakes
+
+- Underestimating ETL costs (usually 40–60% of the project budget)
+- Choosing a vendor based on features, not 5-year TCO
+- Ignoring data governance from the start
+- No internal ownership — the DWH becomes a data dump
+
+I've been involved in dozens of DWH projects. If you'd like an outside perspective on your situation — [get in touch](/en/contacts).

@@ -283,41 +283,58 @@ export const blogPosts = [
   {
     slug: "ai-banking-central-asia-2025",
     title: "AI в банкинге ЦА: реальные кейсы vs хайп",
+    titleEn: "AI in Central Asian Banking: Real Cases vs Hype",
     excerpt:
       "Что реально работает из AI в банках Узбекистана, Казахстана и других стран ЦА — на основе практики внедрений, а не маркетинговых обещаний.",
+    excerptEn:
+      "What actually works in AI for banks in Uzbekistan, Kazakhstan and other CA countries — based on real implementation experience, not marketing promises.",
     category: "AI/ML",
     date: "2025-02-10",
     readTime: "8 мин",
+    readTimeEn: "8 min",
     coverImage: null,
   },
   {
     slug: "how-to-choose-cio-uzbekistan",
     title: "Как выбрать CIO для банка в Узбекистане",
+    titleEn: "How to Choose a CIO for a Bank in Uzbekistan",
     excerpt:
       "Критерии отбора, типичные ошибки и что отличает сильного технического директора для банка на рынке ЦА.",
+    excerptEn:
+      "Selection criteria, common mistakes, and what sets a strong technology leader apart in the Central Asian banking market.",
     category: "Команды",
+    categoryEn: "Teams",
     date: "2025-01-20",
     readTime: "6 мин",
+    readTimeEn: "6 min",
     coverImage: null,
   },
   {
     slug: "regtech-uzbekistan-2024-2025",
     title: "RegTech в Узбекистане: что изменилось в 2024–2025",
+    titleEn: "RegTech in Uzbekistan: What Changed in 2024–2025",
     excerpt:
       "Обзор изменений регулирования ЦБ Узбекистана и практические советы по адаптации IT-систем.",
+    excerptEn:
+      "An overview of Central Bank of Uzbekistan regulatory changes and practical advice on adapting IT systems.",
     category: "RegTech",
     date: "2025-01-05",
     readTime: "7 мин",
+    readTimeEn: "7 min",
     coverImage: null,
   },
   {
     slug: "dwh-bank-build-vs-buy",
     title: "DWH для банка: build vs buy",
+    titleEn: "Bank DWH: Build vs Buy",
     excerpt:
       "Когда строить собственное хранилище данных, а когда покупать готовое решение — взвешенный анализ на основе реальных проектов в банках ЦА.",
+    excerptEn:
+      "When to build your own data warehouse and when to buy a ready-made solution — a balanced analysis based on real CA banking projects.",
     category: "Data",
     date: "2024-12-15",
     readTime: "10 мин",
+    readTimeEn: "10 min",
     coverImage: null,
   },
 ];

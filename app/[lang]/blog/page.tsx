@@ -57,16 +57,16 @@ export default async function BlogPage({ params }: Props) {
                 </div>
                 <div className="p-5 flex flex-col gap-3 flex-1">
                   <div className="flex items-center justify-between">
-                    <Badge variant="default">{post.category}</Badge>
+                    <Badge variant="default">{isEn ? (post.categoryEn ?? post.category) : post.category}</Badge>
                     <span className="flex items-center gap-1 text-xs text-[#64748B]">
                       <Clock size={12} />
-                      {post.readTime}
+                      {isEn ? (post.readTimeEn ?? post.readTime) : post.readTime}
                     </span>
                   </div>
                   <h2 className="text-base font-bold text-[#0F172A] leading-snug group-hover:text-[#2563EB] transition-colors">
-                    {post.title}
+                    {isEn ? (post.titleEn ?? post.title) : post.title}
                   </h2>
-                  <p className="text-sm text-[#64748B] leading-relaxed flex-1">{post.excerpt}</p>
+                  <p className="text-sm text-[#64748B] leading-relaxed flex-1">{isEn ? (post.excerptEn ?? post.excerpt) : post.excerpt}</p>
                   <div className="flex items-center justify-between pt-3 border-t border-slate-100">
                     <span className="text-xs text-[#64748B]">{formatDate(post.date)}</span>
                     <span className="flex items-center gap-1 text-sm font-semibold text-[#2563EB] group-hover:gap-2 transition-all">

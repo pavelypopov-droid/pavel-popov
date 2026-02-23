@@ -20,10 +20,14 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+  const { lang, slug } = await params;
+  const isEn = lang === "en";
   const post = blogPosts.find((p) => p.slug === slug);
   if (!post) return {};
-  return { title: post.title, description: post.excerpt };
+  return {
+    title: isEn ? (post.titleEn ?? post.title) : post.title,
+    description: isEn ? (post.excerptEn ?? post.excerpt) : post.excerpt,
+  };
 }
 
 function parseMdx(content: string) {
@@ -52,15 +56,30 @@ export default async function BlogPostPage({ params }: Props) {
 
   if (!post) notFound();
 
+  // Load EN or RU MDX file
   let htmlContent = "";
   try {
-    const filePath = path.join(process.cwd(), "content/blog", `${slug}.mdx`);
+    const filePath = isEn
+      ? path.join(process.cwd(), "content/blog/en", `${slug}.mdx`)
+      : path.join(process.cwd(), "content/blog", `${slug}.mdx`);
     const raw = fs.readFileSync(filePath, "utf-8");
     const md = parseMdx(raw);
     htmlContent = mdToHtml(md);
   } catch {
-    htmlContent = `<p class="text-[#374151]">${post.excerpt}</p>`;
+    // Fallback to RU file if EN not found
+    try {
+      const fallbackPath = path.join(process.cwd(), "content/blog", `${slug}.mdx`);
+      const raw = fs.readFileSync(fallbackPath, "utf-8");
+      const md = parseMdx(raw);
+      htmlContent = mdToHtml(md);
+    } catch {
+      htmlContent = `<p class="text-[#374151]">${isEn ? (post.excerptEn ?? post.excerpt) : post.excerpt}</p>`;
+    }
   }
+
+  const title = isEn ? (post.titleEn ?? post.title) : post.title;
+  const readTime = isEn ? (post.readTimeEn ?? post.readTime) : post.readTime;
+  const category = isEn ? (post.categoryEn ?? post.category) : post.category;
 
   const formatDate = (d: string) =>
     new Date(d).toLocaleDateString(isEn ? "en-GB" : "ru-RU", {
@@ -83,7 +102,7 @@ export default async function BlogPostPage({ params }: Props) {
 
           <div className="flex items-center gap-3 mb-4">
             <span className="px-3 py-1 bg-[#2563EB]/20 border border-[#2563EB]/30 text-blue-300 text-xs font-medium rounded-full">
-              {post.category}
+              {category}
             </span>
             <span className="flex items-center gap-1 text-sm text-slate-400">
               <Calendar size={14} />
@@ -91,12 +110,12 @@ export default async function BlogPostPage({ params }: Props) {
             </span>
             <span className="flex items-center gap-1 text-sm text-slate-400">
               <Clock size={14} />
-              {post.readTime}
+              {readTime}
             </span>
           </div>
 
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
-            {post.title}
+            {title}
           </h1>
         </div>
       </section>
