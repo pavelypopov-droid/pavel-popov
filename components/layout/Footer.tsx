@@ -6,7 +6,7 @@ const serviceLinks = [
   { href: "/services#strategy", label: "IT & Digital Strategy" },
   { href: "/services#teams", label: "FinTech Team Assembly" },
   { href: "/services#delivery", label: "Turnkey Delivery" },
-  { href: "/services#regtech", label: "RegTech & Compliance" },
+  { href: "/services#regtech", label: "RegTech & DWH" },
   { href: "/services#cto", label: "CTO-as-a-Service" },
 ];
 
