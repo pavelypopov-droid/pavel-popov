@@ -24,7 +24,7 @@ export default function JsonLd() {
     ],
     alumniOf: "МГУ им. М.В. Ломоносова",
     sameAs: [
-      "https://linkedin.com/in/pavel-popov",
+      "https://www.linkedin.com/in/pavel-popov-19917266/",
     ],
   };
 

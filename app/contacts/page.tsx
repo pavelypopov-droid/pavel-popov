@@ -98,7 +98,7 @@ export default function ContactsPage() {
                 </h3>
                 <div className="flex gap-3">
                   <a
-                    href="https://linkedin.com/in/pavel-popov"
+                    href="https://www.linkedin.com/in/pavel-popov-19917266/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm font-medium text-[#374151] hover:border-[#2563EB] hover:text-[#2563EB] transition-colors"

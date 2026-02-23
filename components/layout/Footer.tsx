@@ -40,7 +40,7 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-3">
               <a
-                href="https://linkedin.com/in/pavel-popov"
+                href="https://www.linkedin.com/in/pavel-popov-19917266/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-lg bg-slate-800 hover:bg-[#2563EB] flex items-center justify-center transition-colors"
