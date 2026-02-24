@@ -88,7 +88,7 @@ export default function Header({ lang }: Props) {
                   scrolled ? "text-[#64748B]" : "text-blue-200"
                 }`}
               >
-                IT & FinTech Advisor
+                IT · AI · FinTech Advisor
               </p>
             </div>
           </Link>
