@@ -20,6 +20,11 @@ const blogImages: Record<string, string> = {
   "how-to-choose-cio-uzbekistan": "/images/blog-cio.jpg",
   "regtech-uzbekistan-2024-2025": "/images/blog-regtech.jpg",
   "dwh-bank-build-vs-buy": "/images/blog-dwh.jpg",
+  "digital-banking-uzbekistan-2026": "/images/blog-digital-banking-2026.jpg",
+  "speech-ai-uzbekistan-2024": "/images/blog-speech-ai-2024.jpg",
+  "it-cost-forecast-2021": "/images/blog-it-cost-2021.jpg",
+  "import-substitution-banking-2020": "/images/blog-import-substitution-2020.jpg",
+  "soft-vs-hard-skills-it": "/images/blog-soft-hard-skills.jpg",
 };
 
 export default async function BlogPage({ params }: Props) {

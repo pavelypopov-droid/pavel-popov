@@ -280,6 +280,7 @@ export const testimonials = [
 ];
 
 export const blogPosts = [
+  // Sorted by date descending (newest first)
   {
     slug: "digital-banking-uzbekistan-2026",
     title: "Цифровой банкинг Узбекистана: тренды 2026 года",
@@ -290,19 +291,7 @@ export const blogPosts = [
     date: "2026-02-09",
     readTime: "5 мин",
     readTimeEn: "5 min",
-    coverImage: null,
-  },
-  {
-    slug: "speech-ai-uzbekistan-2024",
-    title: "Идеальное внедрение начинается с идеальных заказчиков",
-    titleEn: "The Perfect Implementation Starts with the Perfect Client",
-    excerpt: "Об особенностях внедрения речевых технологий и ИИ в банках Узбекистана, диалектах, пилотах и реальных результатах — интервью для Spot.uz.",
-    excerptEn: "On deploying speech AI in Uzbekistan banks — dialects, pilots, and real results. Interview for Spot.uz.",
-    category: "AI/ML",
-    date: "2024-02-19",
-    readTime: "7 мин",
-    readTimeEn: "7 min",
-    coverImage: null,
+    coverImage: "/images/blog-digital-banking-2026.jpg",
   },
   {
     slug: "ai-banking-central-asia-2025",
@@ -314,7 +303,7 @@ export const blogPosts = [
     date: "2025-02-10",
     readTime: "8 мин",
     readTimeEn: "8 min",
-    coverImage: null,
+    coverImage: "/images/blog-ai-banking.jpg",
   },
   {
     slug: "how-to-choose-cio-uzbekistan",
@@ -327,7 +316,7 @@ export const blogPosts = [
     date: "2025-01-20",
     readTime: "6 мин",
     readTimeEn: "6 min",
-    coverImage: null,
+    coverImage: "/images/blog-cio.jpg",
   },
   {
     slug: "regtech-uzbekistan-2024-2025",
@@ -339,7 +328,7 @@ export const blogPosts = [
     date: "2025-01-05",
     readTime: "7 мин",
     readTimeEn: "7 min",
-    coverImage: null,
+    coverImage: "/images/blog-regtech.jpg",
   },
   {
     slug: "dwh-bank-build-vs-buy",
@@ -351,7 +340,31 @@ export const blogPosts = [
     date: "2024-12-15",
     readTime: "10 мин",
     readTimeEn: "10 min",
-    coverImage: null,
+    coverImage: "/images/blog-dwh.jpg",
+  },
+  {
+    slug: "speech-ai-uzbekistan-2024",
+    title: "Идеальное внедрение начинается с идеальных заказчиков",
+    titleEn: "The Perfect Implementation Starts with the Perfect Client",
+    excerpt: "Об особенностях внедрения речевых технологий и ИИ в банках Узбекистана, диалектах, пилотах и реальных результатах — интервью для Spot.uz.",
+    excerptEn: "On deploying speech AI in Uzbekistan banks — dialects, pilots, and real results. Interview for Spot.uz.",
+    category: "AI/ML",
+    date: "2024-02-19",
+    readTime: "7 мин",
+    readTimeEn: "7 min",
+    coverImage: "/images/blog-speech-ai-2024.jpg",
+  },
+  {
+    slug: "import-substitution-banking-2020",
+    title: "С переходом на отечественное ПО можно подождать",
+    titleEn: "The Switch to Domestic Software Can Wait",
+    excerpt: "Почему перенос сроков импортозамещения в банковском секторе с 2021 на 2025 год — обдуманное решение, и что нужно сделать за это время.",
+    excerptEn: "Why postponing the banking sector import substitution deadline from 2021 to 2025 was the right call — and what to do in the meantime.",
+    category: "RegTech",
+    date: "2020-10-15",
+    readTime: "5 мин",
+    readTimeEn: "5 min",
+    coverImage: "/images/blog-import-substitution-2020.jpg",
   },
   {
     slug: "it-cost-forecast-2021",
@@ -364,19 +377,7 @@ export const blogPosts = [
     date: "2020-09-30",
     readTime: "4 мин",
     readTimeEn: "4 min",
-    coverImage: null,
-  },
-  {
-    slug: "import-substitution-banking-2020",
-    title: "С переходом на отечественное ПО можно подождать",
-    titleEn: "The Switch to Domestic Software Can Wait",
-    excerpt: "Почему перенос сроков импортозамещения в банковском секторе с 2021 на 2025 год — обдуманное решение, и что нужно сделать за это время.",
-    excerptEn: "Why postponing the banking sector import substitution deadline from 2021 to 2025 was the right call — and what to do in the meantime.",
-    category: "RegTech",
-    date: "2020-10-15",
-    readTime: "5 мин",
-    readTimeEn: "5 min",
-    coverImage: null,
+    coverImage: "/images/blog-it-cost-2021.jpg",
   },
   {
     slug: "soft-vs-hard-skills-it",
@@ -389,6 +390,6 @@ export const blogPosts = [
     date: "2020-06-01",
     readTime: "5 мин",
     readTimeEn: "5 min",
-    coverImage: null,
+    coverImage: "/images/blog-soft-hard-skills.jpg",
   },
 ];
