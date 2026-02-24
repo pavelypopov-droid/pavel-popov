@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { track } from "@/components/seo/Analytics";
 import { useForm } from "react-hook-form";
 
 type FormData = {
@@ -44,9 +45,11 @@ export default function ContactForm() {
 
       if (res.ok) {
         setStatus("success");
+        track.formSubmit(true);
         reset();
       } else {
         setStatus("error");
+        track.formSubmit(false);
       }
     } catch {
       setStatus("error");

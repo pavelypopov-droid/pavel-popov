@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Download, ArrowRight } from "lucide-react";
 import Button from "@/components/ui/Button";
+import { track } from "@/components/seo/Analytics";
 import type { Locale } from "@/lib/i18n-config";
 
 const t = {
@@ -86,13 +87,13 @@ export default function Hero({ lang = "ru" }: Props) {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link href={tx.contactsHref}>
+              <Link href={tx.contactsHref} onClick={() => track.ctaClick("hero")}>
                 <Button size="lg" className="w-full sm:w-auto">
                   {tx.cta}
                   <ArrowRight size={18} />
                 </Button>
               </Link>
-              <a href="/files/CV_Pavel_Popov_RU.pdf" download>
+              <a href="/files/CV_Pavel_Popov_RU.pdf" download onClick={() => track.cvDownload()}>
                 <Button
                   size="lg"
                   variant="secondary"
