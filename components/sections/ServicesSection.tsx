@@ -1,16 +1,18 @@
 import Link from "next/link";
-import { Brain, Map, Users, Package, Shield, Briefcase, ArrowRight } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 import Card from "@/components/ui/Card";
 import { services } from "@/lib/data";
 import type { Locale } from "@/lib/i18n-config";
 
-const iconMap: Record<string, React.ReactNode> = {
-  Brain: <Brain size={28} className="text-[#2563EB]" />,
-  Map: <Map size={28} className="text-[#2563EB]" />,
-  Users: <Users size={28} className="text-[#2563EB]" />,
-  Package: <Package size={28} className="text-[#2563EB]" />,
-  Shield: <Shield size={28} className="text-[#2563EB]" />,
-  Briefcase: <Briefcase size={28} className="text-[#2563EB]" />,
+// Map service id to AI-generated icon image
+const serviceImageMap: Record<number, string> = {
+  1: "/images/service-ai.png",
+  2: "/images/service-strategy.png",
+  3: "/images/service-team.png",
+  4: "/images/service-delivery.png",
+  5: "/images/service-regtech.png",
+  6: "/images/service-cto.png",
 };
 
 const servicesTitlesEn: Record<number, { title: string; description: string }> = {
@@ -86,11 +88,19 @@ export default function ServicesSection({ lang = "ru" }: Props) {
             const enData = servicesTitlesEn[service.id];
             const title = lang === "en" ? enData?.title : service.title;
             const description = lang === "en" ? enData?.description : service.description;
+            const imgSrc = serviceImageMap[service.id];
 
             return (
-              <Card key={service.id} className="flex flex-col gap-4">
-                <div className="w-12 h-12 rounded-xl bg-[#EFF6FF] flex items-center justify-center">
-                  {iconMap[service.icon]}
+              <Card key={service.id} className="flex flex-col gap-4 group hover:border-[#2563EB]/30 transition-all duration-300">
+                {/* AI-generated icon illustration */}
+                <div className="w-20 h-20 relative">
+                  <Image
+                    src={imgSrc}
+                    alt={title ?? ""}
+                    fill
+                    className="object-contain group-hover:scale-110 transition-transform duration-300"
+                    sizes="80px"
+                  />
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-[#0F172A] mb-2">{title}</h3>

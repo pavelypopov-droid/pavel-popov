@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { CheckCircle2, ArrowRight } from "lucide-react";
 import Badge from "@/components/ui/Badge";
-import Card from "@/components/ui/Card";
 import { cases } from "@/lib/data";
 import CTABlock from "@/components/sections/CTABlock";
 import type { Locale } from "@/lib/i18n-config";
@@ -43,6 +43,14 @@ const casesEn: Record<number, { title: string; challenge: string; solution: stri
   },
 };
 
+// Cover images for each case
+const caseImages: Record<number, string> = {
+  1: "/images/case-state-bank.jpg",
+  2: "/images/case-speech-tech.jpg",
+  3: "/images/case-it-company.jpg",
+  4: "/images/case-fintech.jpg",
+};
+
 export default async function CasesPage({ params }: Props) {
   const { lang } = await params;
   const isEn = lang === "en";
@@ -67,56 +75,68 @@ export default async function CasesPage({ params }: Props) {
 
       <section className="bg-[#F8FAFC] py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {cases.map((c) => {
               const enData = casesEn[c.id];
               const title = isEn ? enData?.title : c.title;
               const challenge = isEn ? enData?.challenge : c.challenge;
               const solution = isEn ? enData?.solution : c.solution;
               const results = isEn ? enData?.results : c.results;
+              const imgSrc = caseImages[c.id];
 
               return (
-                <Card key={c.id} className="flex flex-col gap-5">
-                  <div className="flex flex-wrap items-center justify-between gap-2">
-                    <div className="flex flex-wrap gap-2">
+                <div key={c.id} className="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col">
+                  {/* Case cover image */}
+                  <div className="relative h-52 overflow-hidden">
+                    <Image
+                      src={imgSrc}
+                      alt={title ?? ""}
+                      fill
+                      className="object-cover transition-transform duration-500 hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A]/60 to-transparent" />
+                    <div className="absolute bottom-3 left-4 flex flex-wrap gap-2">
                       <Badge variant="industry">{c.industry}</Badge>
                       {c.tags.map((tag) => (
-                        <Badge key={tag} variant="outline">{tag}</Badge>
+                        <Badge key={tag} variant="outline" className="border-white/30 text-white bg-white/10">{tag}</Badge>
                       ))}
                     </div>
-                    <span className="text-xs text-[#64748B]">{c.period}</span>
+                    <span className="absolute top-3 right-4 text-xs text-white/70 bg-black/30 px-2 py-1 rounded-full">{c.period}</span>
                   </div>
 
-                  <h2 className="text-lg font-bold text-[#0F172A] leading-snug">{title}</h2>
+                  <div className="flex flex-col gap-5 p-6 flex-1">
+                    <h2 className="text-lg font-bold text-[#0F172A] leading-snug">{title}</h2>
 
-                  <div>
-                    <p className="text-xs font-semibold text-[#64748B] uppercase tracking-wider mb-2">
-                      {isEn ? "Challenge" : "Задача"}
-                    </p>
-                    <p className="text-sm text-[#374151]">{challenge}</p>
-                  </div>
+                    <div>
+                      <p className="text-xs font-semibold text-[#64748B] uppercase tracking-wider mb-2">
+                        {isEn ? "Challenge" : "Задача"}
+                      </p>
+                      <p className="text-sm text-[#374151]">{challenge}</p>
+                    </div>
 
-                  <div>
-                    <p className="text-xs font-semibold text-[#64748B] uppercase tracking-wider mb-2">
-                      {isEn ? "Solution" : "Решение"}
-                    </p>
-                    <p className="text-sm text-[#374151]">{solution}</p>
-                  </div>
+                    <div>
+                      <p className="text-xs font-semibold text-[#64748B] uppercase tracking-wider mb-2">
+                        {isEn ? "Solution" : "Решение"}
+                      </p>
+                      <p className="text-sm text-[#374151]">{solution}</p>
+                    </div>
 
-                  <div>
-                    <p className="text-xs font-semibold text-[#64748B] uppercase tracking-wider mb-3">
-                      {isEn ? "Results" : "Результат"}
-                    </p>
-                    <ul className="space-y-2">
-                      {results?.map((r, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm">
-                          <CheckCircle2 size={14} className="text-[#2563EB] shrink-0 mt-0.5" />
-                          <span className="font-semibold text-[#0F172A]">{r}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    <div>
+                      <p className="text-xs font-semibold text-[#64748B] uppercase tracking-wider mb-3">
+                        {isEn ? "Results" : "Результат"}
+                      </p>
+                      <ul className="space-y-2">
+                        {results?.map((r, i) => (
+                          <li key={i} className="flex items-start gap-2 text-sm">
+                            <CheckCircle2 size={14} className="text-[#2563EB] shrink-0 mt-0.5" />
+                            <span className="font-semibold text-[#0F172A]">{r}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
-                </Card>
+                </div>
               );
             })}
           </div>

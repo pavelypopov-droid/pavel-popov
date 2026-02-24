@@ -46,15 +46,19 @@ export default function Hero({ lang = "ru" }: Props) {
 
   return (
     <section className="relative min-h-screen flex items-center bg-[#0F172A] overflow-hidden">
-      {/* Background pattern */}
-      <div
-        className="absolute inset-0 opacity-[0.07]"
-        style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
-          backgroundSize: "40px 40px",
-        }}
+      {/* AI-generated background image */}
+      <Image
+        src="/images/hero-bg.jpg"
+        alt=""
+        fill
+        className="object-cover object-center opacity-30"
+        priority
+        sizes="100vw"
+        aria-hidden="true"
       />
-      <div className="absolute inset-0 bg-gradient-to-br from-[#1E3A8A]/30 via-transparent to-[#0F172A]/60" />
+      {/* Overlay gradients */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0F172A]/80 via-[#0F172A]/60 to-[#1E3A8A]/40" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-transparent to-transparent" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 lg:py-40">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
