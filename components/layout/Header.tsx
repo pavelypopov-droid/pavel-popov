@@ -28,8 +28,9 @@ function getAlternateLang(pathname: string): { href: string; label: string } {
     const ruPath = pathname.replace(/^\/en/, "") || "/";
     return { href: ruPath, label: "RU" };
   } else {
-    // Switch to EN: add /en prefix
-    const enPath = "/en" + (pathname === "/" ? "" : pathname);
+    // Switch to EN: remove /ru prefix (if any) then add /en prefix
+    const strippedPath = pathname.replace(/^\/ru/, "") || "/";
+    const enPath = "/en" + (strippedPath === "/" ? "" : strippedPath);
     return { href: enPath, label: "EN" };
   }
 }
