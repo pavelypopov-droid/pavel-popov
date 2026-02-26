@@ -87,7 +87,7 @@ export default async function AboutPage({ params }: Props) {
             <div className="flex justify-center lg:justify-start order-2 lg:order-1">
               <div className="relative w-64 h-72 sm:w-72 sm:h-80 rounded-3xl overflow-hidden border-2 border-white/10 shadow-2xl">
                 <Image
-                  src="/images/pavel-popov-photo.jpg"
+                  src="/images/pavel-popov-about.jpg"
                   alt="Pavel Popov"
                   fill
                   className="object-cover object-top"
