@@ -8,6 +8,7 @@ import CasesSection from "@/components/sections/CasesSection";
 import AboutSection from "@/components/sections/AboutSection";
 import Testimonials from "@/components/sections/Testimonials";
 import CTABlock from "@/components/sections/CTABlock";
+import PartnersSection from "@/components/sections/PartnersSection";
 
 interface Props {
   params: Promise<{ lang: string }>;
@@ -49,6 +50,7 @@ export default async function LangHome({ params }: Props) {
       <SocialProof />
       <ServicesSection lang={lang as Locale} />
       <CasesSection lang={lang as Locale} />
+      <PartnersSection lang={lang as Locale} />
       <AboutSection lang={lang as Locale} />
       <Testimonials />
       <CTABlock lang={lang as Locale} />
