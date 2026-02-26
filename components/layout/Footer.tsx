@@ -59,13 +59,13 @@ export default function Footer() {
                 <p className="font-bold text-base leading-tight">
                   {isEn ? "Pavel Popov" : "Павел Попов"}
                 </p>
-                <p className="text-xs text-blue-300 leading-tight">IT & FinTech Advisor</p>
+                <p className="text-xs text-blue-300 leading-tight">IT · AI · FinTech Advisor</p>
               </div>
             </div>
             <p className="text-sm text-slate-400 leading-relaxed mb-6">
               {isEn
-                ? "International IT Advisor with 25+ years of experience. Digital transformations for banks, telecom and public sector across Central Asia."
-                : "Международный IT консультант с 25-летним опытом. Цифровые трансформации для банков, телекома и государственного сектора Центральной Азии."}
+                ? "International IT & AI Advisor with 25+ years of experience. Digital transformations for banks, telecom and public sector across Central Asia."
+                : "Международный IT & AI консультант с 25-летним опытом. Цифровые трансформации для банков, телекома и государственного сектора Центральной Азии."}
             </p>
             <div className="flex items-center gap-3">
               <a
