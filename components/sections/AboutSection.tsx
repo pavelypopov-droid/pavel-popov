@@ -41,7 +41,7 @@ export default function AboutSection({ lang = "ru" }: Props) {
             <div className="relative">
               <div className="w-72 h-80 sm:w-80 sm:h-96 rounded-3xl overflow-hidden shadow-2xl">
                 <Image
-                  src="/images/pavel-popov-photo.jpg"
+                  src="/images/pavel-popov-home.jpg"
                   alt="Pavel Popov"
                   fill
                   className="object-cover object-top"
