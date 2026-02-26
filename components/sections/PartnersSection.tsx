@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Users, Cpu, UserRound, Briefcase } from "lucide-react";
 import type { Locale } from "@/lib/i18n-config";
@@ -101,23 +100,9 @@ export default function PartnersSection({ lang = "ru" }: Props) {
           </p>
         </div>
 
-        {/* Grid */}
-        <div className="grid lg:grid-cols-[2fr_3fr] gap-10 lg:gap-16 items-center">
-          {/* Photo */}
-          <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[2/3]">
-            <Image
-              src="/images/partners-bg.jpg"
-              alt="Pavel Popov — team meeting"
-              fill
-              className="object-cover object-top"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A]/40 to-transparent" />
-          </div>
-
-          {/* Cards */}
-          <div className="grid sm:grid-cols-2 gap-5">
-            {tx.partners.map((p) => {
+        {/* Cards */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {tx.partners.map((p) => {
               const Icon = p.icon;
               return (
                 <div
@@ -146,7 +131,6 @@ export default function PartnersSection({ lang = "ru" }: Props) {
                 </div>
               );
             })}
-          </div>
         </div>
       </div>
     </section>

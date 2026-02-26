@@ -39,13 +39,13 @@ export default function AboutSection({ lang = "ru" }: Props) {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div className="flex justify-center lg:justify-start order-2 lg:order-1">
             <div className="relative">
-              <div className="w-72 h-80 sm:w-80 sm:h-96 rounded-3xl overflow-hidden shadow-2xl">
+              <div className="w-80 h-96 sm:w-96 sm:h-[480px] rounded-3xl overflow-hidden shadow-2xl">
                 <Image
                   src="/images/pavel-popov-home.jpg"
                   alt="Pavel Popov"
                   fill
                   className="object-cover object-top"
-                  sizes="(max-width: 768px) 288px, 320px"
+                  sizes="(max-width: 768px) 320px, 384px"
                 />
               </div>
               <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-[#2563EB]/10 rounded-3xl -z-10" />
