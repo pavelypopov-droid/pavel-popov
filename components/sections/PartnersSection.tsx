@@ -102,9 +102,9 @@ export default function PartnersSection({ lang = "ru" }: Props) {
         </div>
 
         {/* Grid */}
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-[2fr_3fr] gap-10 lg:gap-16 items-center">
           {/* Photo */}
-          <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[3/4]">
+          <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[2/3]">
             <Image
               src="/images/partners-bg.jpg"
               alt="Pavel Popov — team meeting"
