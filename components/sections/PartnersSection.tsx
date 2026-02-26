@@ -104,12 +104,12 @@ export default function PartnersSection({ lang = "ru" }: Props) {
         {/* Grid */}
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Photo */}
-          <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3]">
+          <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[3/4]">
             <Image
               src="/images/partners-bg.jpg"
               alt="Pavel Popov — team meeting"
               fill
-              className="object-cover object-center"
+              className="object-cover object-top"
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A]/40 to-transparent" />
