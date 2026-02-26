@@ -5,7 +5,7 @@ import type { Locale } from "@/lib/i18n-config";
 
 const t = {
   ru: {
-    eyebrow: "Экосистема",
+    eyebrow: "Партнёры",
     title: "Работаю не один",
     subtitle:
       "За каждым проектом стоит команда профессионалов. Я координирую нужных людей и партнёров под конкретную задачу клиента.",
@@ -41,7 +41,7 @@ const t = {
     ],
   },
   en: {
-    eyebrow: "Ecosystem",
+    eyebrow: "Partners",
     title: "I don't work alone",
     subtitle:
       "Behind every project stands a team of professionals. I coordinate the right people and partners for each client's specific challenge.",
