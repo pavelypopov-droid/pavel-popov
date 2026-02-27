@@ -112,10 +112,10 @@ export default function PartnersSection({ lang = "ru" }: Props) {
                   <div className="w-10 h-10 rounded-xl bg-[#2563EB]/10 flex items-center justify-center shrink-0">
                     <Icon size={20} className="text-[#2563EB]" />
                   </div>
-                  <h3 className="font-semibold text-[#0F172A] text-sm leading-snug">
+                  <h3 className="font-semibold text-[#0F172A] text-base leading-snug">
                     {p.title}
                   </h3>
-                  <p className="text-xs text-[#6B7280] leading-relaxed">
+                  <p className="text-sm text-[#6B7280] leading-relaxed">
                     {p.description}
                   </p>
                   {"link" in p && p.link && (
