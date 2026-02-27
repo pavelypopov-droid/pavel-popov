@@ -78,7 +78,7 @@ export default function ServicesSection({ lang = "ru" }: Props) {
           <h2 className="mt-2 text-3xl sm:text-4xl font-bold text-[#0F172A]">
             {tx.title}
           </h2>
-          <p className="mt-4 text-lg text-[#64748B] max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-[#374151] max-w-2xl mx-auto">
             {tx.subtitle}
           </p>
         </div>
@@ -104,7 +104,7 @@ export default function ServicesSection({ lang = "ru" }: Props) {
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-[#0F172A] mb-2">{title}</h3>
-                  <p className="text-sm text-[#64748B] leading-relaxed">{description}</p>
+                  <p className="text-sm text-[#374151] leading-relaxed">{description}</p>
                 </div>
                 <Link
                   href={`${tx.servicesHref}#${service.id}`}
