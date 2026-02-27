@@ -85,7 +85,7 @@ export default function PartnersSection({ lang = "ru" }: Props) {
   const tx = t[lang];
 
   return (
-    <section className="bg-white py-20 lg:py-28 overflow-hidden">
+    <section className="bg-[#F8FAFC] py-20 lg:py-28 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-14">
@@ -107,7 +107,7 @@ export default function PartnersSection({ lang = "ru" }: Props) {
               return (
                 <div
                   key={p.title}
-                  className="bg-[#F8FAFC] rounded-2xl p-6 flex flex-col gap-3 hover:shadow-md transition-shadow"
+                  className="bg-white rounded-2xl p-6 flex flex-col gap-3 hover:shadow-md transition-shadow"
                 >
                   <div className="w-10 h-10 rounded-xl bg-[#2563EB]/10 flex items-center justify-center shrink-0">
                     <Icon size={20} className="text-[#2563EB]" />
@@ -115,7 +115,7 @@ export default function PartnersSection({ lang = "ru" }: Props) {
                   <h3 className="font-semibold text-[#0F172A] text-base leading-snug">
                     {p.title}
                   </h3>
-                  <p className="text-sm text-[#6B7280] leading-relaxed">
+                  <p className="text-sm text-[#374151] leading-relaxed">
                     {p.description}
                   </p>
                   {"link" in p && p.link && (
