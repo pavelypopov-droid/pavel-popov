@@ -5,9 +5,9 @@ import type { Locale } from "@/lib/i18n-config";
 const t = {
   ru: {
     eyebrow: "Партнёры",
-    title: "Работаю не один",
+    title: "Гибкость в формате работы",
     subtitle:
-      "За каждым проектом стоит команда профессионалов. Я координирую нужных людей и партнёров под конкретную задачу клиента.",
+      "Работаю самостоятельно или подключаю нужных людей — в зависимости от задачи. Если у заказчика не хватает внутренних ресурсов, могу рекомендовать проверенных партнёров. Если ресурсы есть — работаю с вашей командой.",
     partners: [
       {
         icon: Users,
@@ -41,9 +41,9 @@ const t = {
   },
   en: {
     eyebrow: "Partners",
-    title: "I don't work alone",
+    title: "Flexible engagement model",
     subtitle:
-      "Behind every project stands a team of professionals. I coordinate the right people and partners for each client's specific challenge.",
+      "I work independently or bring in the right people — depending on what the project needs. If you lack internal resources, I can recommend trusted partners. If your team is in place, I work alongside them.",
     partners: [
       {
         icon: Users,
