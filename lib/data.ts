@@ -245,13 +245,17 @@ export const skills = [
   "CIO",
   "FinTech",
   "Digital Transformation",
+  "Enterprise Architecture",
   "DWH",
   "RegTech",
   "ML/AI",
   "Speech Analytics",
+  "RAG",
+  "Voice Biometrics",
   "Team Building",
   "IT Strategy",
   "LLM Integration",
+  "Cybersecurity",
   "Agile",
 ];
 

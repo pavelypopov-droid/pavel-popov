@@ -13,8 +13,8 @@ export const translations = {
     hero: {
       badge: "AI Expert · FinTech · Central Asia",
       name: "Павел Попов",
-      title: "IT & FinTech Advisor · AI Expert",
-      subtitle: "Международный консультант в Центральной Азии",
+      title: "AI Transformation Leader · Enterprise Architect",
+      subtitle: "IT · ИБ · Кибербезопасность · FinTech · Central Asia",
       description:
         "Строю цифровые трансформации под ключ — от стратегии до работающего продукта с передачей знаний. 25 лет в IT, 150+ проектов, 6 стран ЦА.",
       ctaPrimary: "Обсудить проект",
@@ -41,7 +41,7 @@ export const translations = {
       title: "Обо мне",
       subtitle: "25 лет строю цифровое будущее банков",
       p1: "25 лет в IT и FinTech России и Центральной Азии. CIO крупнейших банков, основатель AI-направлений, реализатор 150+ проектов.",
-      p2: "AI эксперт с практическим опытом: от постановки задачи до production-деплоя. Machine Learning, Speech Analytics, LLM-интеграции, AI-driven development — реализованные проекты, а не теория.",
+      p2: "AI эксперт с практическим опытом: от постановки задачи до production-деплоя. Machine Learning, Speech Analytics, LLM-интеграции, RAG-архитектуры, on-prem LLM, Voice Biometrics — реализованные проекты, а не теория.",
       p3: "Работаю как независимый советник и лидер команды. Понимаю рынок ЦА изнутри: регуляторику, культуру, технологический ландшафт. Даю международные практики с адаптацией под реальный контекст клиента.",
       learnMore: "Подробнее обо мне →",
     },
@@ -105,8 +105,8 @@ export const translations = {
     hero: {
       badge: "AI Expert · FinTech · Central Asia",
       name: "Pavel Popov",
-      title: "IT & FinTech Advisor · AI Expert",
-      subtitle: "International Consultant in Central Asia",
+      title: "AI Transformation Leader · Enterprise Architect",
+      subtitle: "IT · InfoSec · Cybersecurity · FinTech · Central Asia",
       description:
         "Delivering end-to-end digital transformations — from strategy to working product with knowledge transfer. 25 years in IT, 150+ projects, 6 CA countries.",
       ctaPrimary: "Discuss Project",
@@ -133,7 +133,7 @@ export const translations = {
       title: "About Me",
       subtitle: "25 years building the digital future of banks",
       p1: "25 years in IT and FinTech across Russia and Central Asia. CIO of major banks, founder of AI practices, delivered 150+ projects.",
-      p2: "AI expert with hands-on experience: from problem definition to production deployment. Machine Learning, Speech Analytics, LLM integrations — real projects, not theory.",
+      p2: "AI expert with hands-on experience: from problem definition to production deployment. Machine Learning, Speech Analytics, LLM integrations, RAG architectures, on-prem LLM, Voice Biometrics — real projects, not theory.",
       p3: "I work as an independent advisor and team leader. I understand the CA market from the inside: regulation, culture, technology landscape. International best practices adapted to your real context.",
       learnMore: "More about me →",
     },
