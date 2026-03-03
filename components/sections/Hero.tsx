@@ -93,7 +93,7 @@ export default function Hero({ lang = "ru" }: Props) {
                   <ArrowRight size={18} />
                 </Button>
               </Link>
-              <a href="/files/CV_Pavel_Popov_RU.pdf" download onClick={() => track.cvDownload()}>
+              <a href={lang === "en" ? "/files/Pavel_Popov_CV_EN_1.pdf" : "/files/CV_Pavel_Popov_RU.pdf"} download onClick={() => track.cvDownload()}>
                 <Button
                   size="lg"
                   variant="secondary"
