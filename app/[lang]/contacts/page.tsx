@@ -134,7 +134,7 @@ export default async function ContactsPage({ params }: Props) {
             </div>
 
             <div className="lg:col-span-3">
-              <ContactForm />
+              <ContactForm lang={lang} />
             </div>
           </div>
         </div>

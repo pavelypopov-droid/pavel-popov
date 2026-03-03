@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { track } from "@/components/seo/Analytics";
 import { useForm } from "react-hook-form";
+import Link from "next/link";
 
 type FormData = {
   name: string;
@@ -14,16 +15,74 @@ type FormData = {
   _honeypot: string;
 };
 
-const subjects = [
-  "Консультация",
-  "AI проект",
-  "IT стратегия",
-  "Подбор команды",
-  "Другое",
-];
+const t = {
+  ru: {
+    title: "Написать сообщение",
+    name: "Имя",
+    namePlaceholder: "Ваше имя",
+    nameError: "Введите имя",
+    company: "Компания",
+    companyPlaceholder: "Название компании",
+    email: "Email",
+    emailPlaceholder: "email@company.com",
+    emailRequired: "Введите email",
+    emailInvalid: "Некорректный email",
+    phone: "Телефон",
+    phonePlaceholder: "+7 / +998",
+    subject: "Тема обращения",
+    subjectPlaceholder: "Выберите тему",
+    subjects: ["Консультация", "AI проект", "IT стратегия", "Подбор команды", "Другое"],
+    message: "Описание задачи",
+    messagePlaceholder: "Расскажите о вашей задаче, контексте и ожидаемом результате...",
+    messageError: "Опишите задачу",
+    error: "Ошибка отправки. Попробуйте ещё раз или напишите напрямую на popov@iofm.ru",
+    sending: "Отправка...",
+    submit: "Отправить запрос →",
+    successTitle: "Спасибо за обращение!",
+    successText: "Отвечу в течение 24 часов",
+    successAgain: "Отправить ещё одно сообщение",
+    consent: "Нажимая «Отправить запрос», вы даёте согласие на обработку персональных данных и их трансграничную передачу в соответствии с",
+    consentLink: "Политикой конфиденциальности",
+    privacyHref: "/privacy",
+  },
+  en: {
+    title: "Send a Message",
+    name: "Name",
+    namePlaceholder: "Your name",
+    nameError: "Please enter your name",
+    company: "Company",
+    companyPlaceholder: "Company name",
+    email: "Email",
+    emailPlaceholder: "email@company.com",
+    emailRequired: "Please enter your email",
+    emailInvalid: "Invalid email address",
+    phone: "Phone",
+    phonePlaceholder: "+7 / +998",
+    subject: "Subject",
+    subjectPlaceholder: "Select a subject",
+    subjects: ["Consultation", "AI Project", "IT Strategy", "Team Assembly", "Other"],
+    message: "Project Description",
+    messagePlaceholder: "Tell us about your project, context and expected outcome...",
+    messageError: "Please describe your project",
+    error: "Failed to send. Please try again or email popov@iofm.ru directly",
+    sending: "Sending...",
+    submit: "Send Request →",
+    successTitle: "Thank you!",
+    successText: "I'll respond within 24 hours",
+    successAgain: "Send another message",
+    consent: "By clicking \"Send Request\", you consent to the processing of your personal data and its cross-border transfer in accordance with the",
+    consentLink: "Privacy Policy",
+    privacyHref: "/en/privacy",
+  },
+};
 
-export default function ContactForm() {
+interface Props {
+  lang?: string;
+}
+
+export default function ContactForm({ lang = "ru" }: Props) {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const tx = lang === "en" ? t.en : t.ru;
 
   const {
     register,
@@ -59,7 +118,7 @@ export default function ContactForm() {
   return (
     <div className="bg-white rounded-2xl border border-slate-200 p-6 lg:p-8 shadow-sm">
       <h2 className="text-xl font-bold text-[#0F172A] mb-6">
-        Написать сообщение
+        {tx.title}
       </h2>
 
       {status === "success" ? (
@@ -68,14 +127,14 @@ export default function ContactForm() {
             <span className="text-3xl">✓</span>
           </div>
           <h3 className="text-xl font-bold text-[#0F172A] mb-2">
-            Спасибо за обращение!
+            {tx.successTitle}
           </h3>
-          <p className="text-[#64748B]">Отвечу в течение 24 часов</p>
+          <p className="text-[#64748B]">{tx.successText}</p>
           <button
             onClick={() => setStatus("idle")}
             className="mt-6 text-sm text-[#2563EB] hover:underline"
           >
-            Отправить ещё одно сообщение
+            {tx.successAgain}
           </button>
         </div>
       ) : (
@@ -92,17 +151,17 @@ export default function ContactForm() {
           <div className="grid sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-[#374151] mb-1">
-                Имя <span className="text-red-500">*</span>
+                {tx.name} <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
-                {...register("name", { required: "Введите имя" })}
+                {...register("name", { required: tx.nameError })}
                 className={`w-full px-4 py-2.5 rounded-xl border text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-[#2563EB] ${
                   errors.name
                     ? "border-red-300 bg-red-50"
                     : "border-slate-200 hover:border-slate-300"
                 }`}
-                placeholder="Ваше имя"
+                placeholder={tx.namePlaceholder}
               />
               {errors.name && (
                 <p className="mt-1 text-xs text-red-500">{errors.name.message}</p>
@@ -111,13 +170,13 @@ export default function ContactForm() {
 
             <div>
               <label className="block text-sm font-medium text-[#374151] mb-1">
-                Компания
+                {tx.company}
               </label>
               <input
                 type="text"
                 {...register("company")}
                 className="w-full px-4 py-2.5 rounded-xl border border-slate-200 hover:border-slate-300 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-[#2563EB]"
-                placeholder="Название компании"
+                placeholder={tx.companyPlaceholder}
               />
             </div>
           </div>
@@ -125,15 +184,15 @@ export default function ContactForm() {
           <div className="grid sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-[#374151] mb-1">
-                Email <span className="text-red-500">*</span>
+                {tx.email} <span className="text-red-500">*</span>
               </label>
               <input
                 type="email"
                 {...register("email", {
-                  required: "Введите email",
+                  required: tx.emailRequired,
                   pattern: {
                     value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                    message: "Некорректный email",
+                    message: tx.emailInvalid,
                   },
                 })}
                 className={`w-full px-4 py-2.5 rounded-xl border text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-[#2563EB] ${
@@ -141,7 +200,7 @@ export default function ContactForm() {
                     ? "border-red-300 bg-red-50"
                     : "border-slate-200 hover:border-slate-300"
                 }`}
-                placeholder="email@company.com"
+                placeholder={tx.emailPlaceholder}
               />
               {errors.email && (
                 <p className="mt-1 text-xs text-red-500">{errors.email.message}</p>
@@ -150,27 +209,27 @@ export default function ContactForm() {
 
             <div>
               <label className="block text-sm font-medium text-[#374151] mb-1">
-                Телефон
+                {tx.phone}
               </label>
               <input
                 type="tel"
                 {...register("phone")}
                 className="w-full px-4 py-2.5 rounded-xl border border-slate-200 hover:border-slate-300 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-[#2563EB]"
-                placeholder="+7 / +998"
+                placeholder={tx.phonePlaceholder}
               />
             </div>
           </div>
 
           <div>
             <label className="block text-sm font-medium text-[#374151] mb-1">
-              Тема обращения
+              {tx.subject}
             </label>
             <select
               {...register("subject")}
               className="w-full px-4 py-2.5 rounded-xl border border-slate-200 hover:border-slate-300 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-[#2563EB] bg-white"
             >
-              <option value="">Выберите тему</option>
-              {subjects.map((s) => (
+              <option value="">{tx.subjectPlaceholder}</option>
+              {tx.subjects.map((s) => (
                 <option key={s} value={s}>
                   {s}
                 </option>
@@ -180,17 +239,17 @@ export default function ContactForm() {
 
           <div>
             <label className="block text-sm font-medium text-[#374151] mb-1">
-              Описание задачи <span className="text-red-500">*</span>
+              {tx.message} <span className="text-red-500">*</span>
             </label>
             <textarea
-              {...register("message", { required: "Опишите задачу" })}
+              {...register("message", { required: tx.messageError })}
               rows={5}
               className={`w-full px-4 py-2.5 rounded-xl border text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-[#2563EB] resize-none ${
                 errors.message
                   ? "border-red-300 bg-red-50"
                   : "border-slate-200 hover:border-slate-300"
               }`}
-              placeholder="Расскажите о вашей задаче, контексте и ожидаемом результате..."
+              placeholder={tx.messagePlaceholder}
             />
             {errors.message && (
               <p className="mt-1 text-xs text-red-500">{errors.message.message}</p>
@@ -199,17 +258,23 @@ export default function ContactForm() {
 
           {status === "error" && (
             <p className="text-sm text-red-500 bg-red-50 px-4 py-3 rounded-xl">
-              Ошибка отправки. Попробуйте ещё раз или напишите напрямую на
-              popov@iofm.ru
+              {tx.error}
             </p>
           )}
+
+          <p className="text-xs text-[#94A3B8] leading-relaxed">
+            {tx.consent}{" "}
+            <Link href={tx.privacyHref} className="text-[#2563EB] hover:underline">
+              {tx.consentLink}
+            </Link>.
+          </p>
 
           <button
             type="submit"
             disabled={status === "sending"}
             className="w-full bg-[#2563EB] text-white font-semibold py-3.5 px-6 rounded-xl hover:bg-[#1d4ed8] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            {status === "sending" ? "Отправка..." : "Отправить запрос →"}
+            {status === "sending" ? tx.sending : tx.submit}
           </button>
         </form>
       )}
