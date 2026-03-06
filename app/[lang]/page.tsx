@@ -8,6 +8,7 @@ import CasesSection from "@/components/sections/CasesSection";
 import AboutSection from "@/components/sections/AboutSection";
 import Testimonials from "@/components/sections/Testimonials";
 import CTABlock from "@/components/sections/CTABlock";
+import GameTeaser from "@/components/sections/GameTeaser";
 import PartnersSection from "@/components/sections/PartnersSection";
 
 interface Props {
@@ -53,6 +54,7 @@ export default async function LangHome({ params }: Props) {
       <PartnersSection lang={lang as Locale} />
       <AboutSection lang={lang as Locale} />
       <Testimonials />
+      <GameTeaser lang={lang as Locale} />
       <CTABlock lang={lang as Locale} />
     </>
   );

@@ -6,6 +6,7 @@ import AboutSection from "@/components/sections/AboutSection";
 import PartnersSection from "@/components/sections/PartnersSection";
 import Testimonials from "@/components/sections/Testimonials";
 import CTABlock from "@/components/sections/CTABlock";
+import GameTeaser from "@/components/sections/GameTeaser";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
       <PartnersSection lang="ru" />
       <AboutSection lang="ru" />
       <Testimonials />
+      <GameTeaser lang="ru" />
       <CTABlock lang="ru" />
     </>
   );
