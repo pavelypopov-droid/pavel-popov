@@ -19,7 +19,7 @@ const t = {
         icon: Cpu,
         title: "Технологические партнёры",
         description:
-          "Вендоры и интеграторы в области AI, речевых технологий, DWH, RegTech и FinTech. Партнёрства позволяют предлагать проверенные решения без лишних посредников.",
+          "Вендоры и интеграторы в области AI, AI-агентов, речевых технологий, DWH, RegTech и FinTech. Партнёрства позволяют предлагать проверенные решения без лишних посредников.",
       },
       {
         icon: Briefcase,
@@ -55,7 +55,7 @@ const t = {
         icon: Cpu,
         title: "Technology Partners",
         description:
-          "Vendors and integrators in AI, speech technologies, DWH, RegTech and FinTech. Partnerships allow us to offer proven solutions without unnecessary intermediaries.",
+          "Vendors and integrators in AI, AI agents, speech technologies, DWH, RegTech and FinTech. Partnerships allow us to offer proven solutions without unnecessary intermediaries.",
       },
       {
         icon: Briefcase,

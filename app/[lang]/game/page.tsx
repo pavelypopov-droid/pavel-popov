@@ -3,9 +3,10 @@
 import { useState } from "react";
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
-import { ClipboardCheck, Building2 } from "lucide-react";
+import { ClipboardCheck, Building2, Sword } from "lucide-react";
 import Quiz from "@/components/game/Quiz";
 import Simulator from "@/components/game/Simulator";
+import Adventure from "@/components/game/Adventure";
 import type { Locale } from "@/lib/i18n-config";
 
 const t = {
@@ -14,12 +15,14 @@ const t = {
     heroSub: "Интерактивная диагностика и симулятор из реальной практики",
     tabQuiz: "Диагностика",
     tabSim: "Симулятор CIO",
+    tabAdv: "Выживание CIO",
   },
   en: {
     hero: "Let's Play!",
     heroSub: "Interactive diagnostics and simulator from real practice",
     tabQuiz: "Diagnostics",
     tabSim: "CIO Simulator",
+    tabAdv: "CIO Survival",
   },
 };
 
@@ -27,7 +30,7 @@ export default function GamePage() {
   const params = useParams();
   const lang = (params?.lang as Locale) || "ru";
   const tx = t[lang] || t.ru;
-  const [tab, setTab] = useState<"quiz" | "sim">("quiz");
+  const [tab, setTab] = useState<"quiz" | "sim" | "adventure">("quiz");
 
   return (
     <main className="min-h-screen bg-[#0F172A]">
@@ -71,9 +74,20 @@ export default function GamePage() {
               <Building2 size={18} />
               {tx.tabSim}
             </button>
+            <button
+              onClick={() => setTab("adventure")}
+              className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all ${
+                tab === "adventure"
+                  ? "bg-[#2563EB] text-white"
+                  : "bg-white/5 text-slate-400 hover:bg-white/10 hover:text-white border border-white/10"
+              }`}
+            >
+              <Sword size={18} />
+              {tx.tabAdv}
+            </button>
           </div>
 
-          {tab === "quiz" ? <Quiz lang={lang} /> : <Simulator lang={lang} />}
+          {tab === "quiz" ? <Quiz lang={lang} /> : tab === "sim" ? <Simulator lang={lang} /> : <Adventure lang={lang} />}
         </div>
       </section>
     </main>

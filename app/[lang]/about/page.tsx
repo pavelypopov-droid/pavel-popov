@@ -22,7 +22,7 @@ const expertiseEn = [
   },
   {
     title: "AI & ML",
-    items: ["Machine Learning scoring", "Speech Analytics (ASR/NLP)", "LLM integrations", "Anti-fraud systems", "AI-driven development"],
+    items: ["Machine Learning scoring", "Speech Analytics (ASR/NLP)", "LLM integrations", "AI agents", "Anti-fraud systems", "AI-driven development"],
   },
   {
     title: "FinTech Delivery",
@@ -37,7 +37,7 @@ const expertiseRu = [
   },
   {
     title: "AI & ML",
-    items: ["Machine Learning скоринг", "Speech Analytics (ASR/NLP)", "LLM-интеграции", "Антифрод системы", "AI-driven development"],
+    items: ["Machine Learning скоринг", "Speech Analytics (ASR/NLP)", "LLM-интеграции", "AI-агенты", "Антифрод системы", "AI-driven development"],
   },
   {
     title: "FinTech Delivery",

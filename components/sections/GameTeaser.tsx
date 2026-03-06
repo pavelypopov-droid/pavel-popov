@@ -15,6 +15,7 @@ const t = {
     href: "/ru/game",
     quiz: "Квиз: 7 вопросов → IT-профиль",
     sim: "Симулятор: 5 реальных ситуаций из практики",
+    adventure: "Выживание CIO: 17 ситуаций, 8 концовок",
   },
   en: {
     badge: "Interactive",
@@ -24,6 +25,7 @@ const t = {
     href: "/en/game",
     quiz: "Quiz: 7 questions → IT profile",
     sim: "Simulator: 5 real-world CIO scenarios",
+    adventure: "CIO Survival: 17 situations, 8 endings",
   },
 };
 
@@ -64,6 +66,10 @@ export default function GameTeaser({ lang = "ru" }: Props) {
                 <li className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#F59E0B]" />
                   {tx.sim}
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#EF4444]" />
+                  {tx.adventure}
                 </li>
               </ul>
             </div>

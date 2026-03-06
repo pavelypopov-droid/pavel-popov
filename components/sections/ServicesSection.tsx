@@ -18,7 +18,7 @@ const serviceImageMap: Record<number, string> = {
 const servicesTitlesEn: Record<number, { title: string; description: string }> = {
   1: {
     title: "AI Implementation",
-    description: "Speech analytics, ML scoring, fraud monitoring — implementation with deep technical expertise. From architecture to production.",
+    description: "Speech analytics, ML scoring, fraud monitoring, AI agents — implementation with deep technical expertise. From architecture to production.",
   },
   2: {
     title: "IT & Digital Strategy",
