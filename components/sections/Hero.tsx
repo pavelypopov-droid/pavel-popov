@@ -72,7 +72,7 @@ export default function Hero({ lang = "ru" }: Props) {
               </span>
             </div>
 
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white tracking-tight mb-4">
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white tracking-tight mb-4">
               {tx.name}
             </h1>
 
@@ -110,7 +110,7 @@ export default function Hero({ lang = "ru" }: Props) {
           <div className="flex justify-center lg:justify-end">
             <div className="relative">
               <div className="absolute -inset-4 bg-[#2563EB]/20 rounded-3xl blur-2xl" />
-              <div className="relative w-72 h-80 sm:w-80 sm:h-96 lg:w-96 lg:h-[480px] rounded-3xl overflow-hidden border-2 border-white/10">
+              <div className="relative w-56 h-64 sm:w-80 sm:h-96 lg:w-96 lg:h-[480px] rounded-3xl overflow-hidden border-2 border-white/10">
                 <Image
                   src="/images/pavel-popov-photo.jpg"
                   alt="Pavel Popov — IT & FinTech Advisor"

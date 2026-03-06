@@ -85,7 +85,7 @@ export default async function AboutPage({ params }: Props) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="flex justify-center lg:justify-start order-2 lg:order-1">
-              <div className="relative w-64 h-72 sm:w-72 sm:h-80 rounded-3xl overflow-hidden border-2 border-white/10 shadow-2xl">
+              <div className="relative w-48 h-56 sm:w-72 sm:h-80 rounded-3xl overflow-hidden border-2 border-white/10 shadow-2xl">
                 <Image
                   src="/images/pavel-popov-about.jpg"
                   alt="Pavel Popov"
@@ -193,7 +193,7 @@ export default async function AboutPage({ params }: Props) {
 
       <section className="bg-[#F8FAFC] py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-10">
+          <div className="grid md:grid-cols-3 gap-6 md:gap-10">
             <div>
               <div className="flex items-center gap-3 mb-6">
                 <GraduationCap size={24} className="text-[#2563EB]" />

@@ -77,7 +77,7 @@ export default function GameTeaser({ lang = "ru" }: Props) {
             <Link
               href={tx.href}
               onClick={() => track.ctaClick("game_teaser")}
-              className="inline-flex items-center gap-2 bg-[#2563EB] text-white font-semibold py-4 px-8 rounded-xl hover:bg-[#1d4ed8] transition-colors text-lg whitespace-nowrap"
+              className="inline-flex items-center gap-2 bg-[#2563EB] text-white font-semibold py-3 px-6 sm:py-4 sm:px-8 rounded-xl hover:bg-[#1d4ed8] transition-colors text-base sm:text-lg whitespace-nowrap"
             >
               {tx.cta} <ArrowRight size={20} />
             </Link>

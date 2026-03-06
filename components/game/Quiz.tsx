@@ -185,7 +185,7 @@ function RadarChart({ scores, labels }: { scores: [number, number, number, numbe
   const gridLevels = [2.5, 5, 7.5, 10];
 
   return (
-    <svg viewBox={`0 0 ${size} ${size}`} className="w-full max-w-[300px] mx-auto">
+    <svg viewBox={`0 0 ${size} ${size}`} className="w-full max-w-[260px] sm:max-w-[300px] mx-auto">
       {/* Grid */}
       {gridLevels.map((level) => {
         const pts = angles.map((a) => getPoint(a, level));

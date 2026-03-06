@@ -42,12 +42,12 @@ export default async function ServicesPage({ params }: Props) {
       </section>
       <section className="bg-white py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col gap-16">
+          <div className="flex flex-col gap-10 sm:gap-16">
             {data.map((service, idx) => {
               const Icon = iconMap[services[idx]?.icon || "Brain"];
               const anchor = serviceAnchors[idx] || String(service.id);
               return (
-                <div key={service.id} id={anchor} className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start pt-4 border-t border-slate-100 first:border-0">
+                <div key={service.id} id={anchor} className="grid lg:grid-cols-2 gap-6 lg:gap-16 items-start pt-4 border-t border-slate-100 first:border-0">
                   <div>
                     <div className="flex items-center gap-4 mb-4">
                       <div className="w-14 h-14 rounded-2xl bg-[#EFF6FF] flex items-center justify-center"><Icon size={32} className="text-[#2563EB]" /></div>

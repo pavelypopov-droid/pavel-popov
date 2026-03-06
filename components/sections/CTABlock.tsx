@@ -37,7 +37,7 @@ export default function CTABlock({ lang = "ru" }: Props) {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href={tx.contactsHref}
-              className="inline-flex items-center justify-center gap-2 bg-[#2563EB] text-white font-semibold py-4 px-8 rounded-xl hover:bg-[#1d4ed8] transition-colors"
+              className="inline-flex items-center justify-center gap-2 bg-[#2563EB] text-white font-semibold py-3 px-6 sm:py-4 sm:px-8 rounded-xl hover:bg-[#1d4ed8] transition-colors text-sm sm:text-base"
             >
               <MessageCircle size={18} />
               {tx.primary}
@@ -46,7 +46,7 @@ export default function CTABlock({ lang = "ru" }: Props) {
               href="https://t.me/popov_pa_uz"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-white/10 border border-white/20 text-white font-semibold py-4 px-8 rounded-xl hover:bg-white/20 transition-colors"
+              className="inline-flex items-center justify-center gap-2 bg-white/10 border border-white/20 text-white font-semibold py-3 px-6 sm:py-4 sm:px-8 rounded-xl hover:bg-white/20 transition-colors text-sm sm:text-base"
             >
               {tx.secondary} <ArrowRight size={18} />
             </a>

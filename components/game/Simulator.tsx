@@ -332,8 +332,8 @@ export default function Simulator({ lang = "ru" }: Props) {
         animate={{ opacity: 1, y: 0 }}
         className="max-w-lg mx-auto text-center"
       >
-        <div className="text-6xl mb-6">🏦</div>
-        <h3 className="text-2xl font-bold text-white mb-4">{tx.title}</h3>
+        <div className="text-4xl sm:text-6xl mb-4 sm:mb-6">🏦</div>
+        <h3 className="text-xl sm:text-2xl font-bold text-white mb-4">{tx.title}</h3>
         <p className="text-slate-400 mb-8">{tx.subtitle}</p>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 mb-8">
           {[

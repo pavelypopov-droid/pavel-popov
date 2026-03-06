@@ -35,7 +35,7 @@ export default async function ContactsPage({ params }: Props) {
 
       <section className="bg-[#F8FAFC] py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-5 gap-12">
+          <div className="grid lg:grid-cols-5 gap-6 lg:gap-12">
             <div className="lg:col-span-2 flex flex-col gap-8">
               <div>
                 <h2 className="text-xl font-bold text-[#0F172A] mb-4">
