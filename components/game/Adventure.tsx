@@ -289,6 +289,13 @@ const t = {
     karma: "Карма",
     step: "Шаг",
     timeout: "Время на решение",
+    summary: "Ваш путь",
+    summaryCorrect: "Оптимально",
+    summaryRisky: "Рискованно",
+    summaryBad: "Неудачно",
+    summaryTimeout: "Время вышло",
+    ctaBlock: "Хотите разобрать ваши решения с практикующим экспертом? 30 минут — бесплатно.",
+    correctRatio: "Оптимальных решений",
   },
   en: {
     title: "CIO Survival",
@@ -319,6 +326,13 @@ const t = {
     karma: "Karma",
     step: "Step",
     timeout: "Time to decide",
+    summary: "Your Journey",
+    summaryCorrect: "Optimal",
+    summaryRisky: "Risky",
+    summaryBad: "Poor",
+    summaryTimeout: "Timed out",
+    ctaBlock: "Want to review your decisions with a practising expert? 30 minutes — free.",
+    correctRatio: "Optimal decisions",
   },
 };
 
@@ -400,6 +414,70 @@ export default function Adventure({ lang = "ru" }: Props) {
     });
     dispatch({ type: "USE_AI", bestIndex: bestIdx });
   }, [state]);
+
+  // ─── Summary Block ───
+  const SummaryBlock = () => {
+    // Build list of played situations with their choice quality
+    const played: { title: string; quality: "correct" | "risky" | "bad" | "timeout" }[] = [];
+    let choiceIdx = 0;
+    for (let l = 0; l <= Math.min(state.level, LEVELS.length - 1); l++) {
+      const level = LEVELS[l];
+      for (let s = 0; s < level.situations.length; s++) {
+        const sit = level.situations[s];
+        const hasSteps = sit.steps && sit.steps.length > 0;
+        const stepCount = hasSteps ? sit.steps!.length : 1;
+        for (let st = 0; st < stepCount; st++) {
+          if (choiceIdx >= state.choices.length) break;
+          const w = state.weights[choiceIdx];
+          const c = state.choices[choiceIdx];
+          const quality = c === -1 ? "timeout" : w >= 7 ? "correct" : w >= 4 ? "risky" : "bad";
+          if (st === 0) {
+            played.push({ title: sit.title[lang], quality });
+          }
+          choiceIdx++;
+        }
+        if (choiceIdx >= state.choices.length) break;
+      }
+      if (choiceIdx >= state.choices.length) break;
+    }
+
+    const optimal = state.weights.filter((w, i) => state.choices[i] !== -1 && w >= 7).length;
+    const totalPlayed = state.weights.length;
+    const pct = totalPlayed > 0 ? Math.round((optimal / totalPlayed) * 100) : 0;
+
+    const qualityIcon = { correct: "✅", risky: "⚠️", bad: "❌", timeout: "⏰" };
+    const qualityLabel = { correct: tx.summaryCorrect, risky: tx.summaryRisky, bad: tx.summaryBad, timeout: tx.summaryTimeout };
+
+    return (
+      <div className="mt-6 mb-6 text-left">
+        <h4 className="text-base font-bold text-white mb-1">{tx.summary}</h4>
+        <p className="text-sm text-slate-400 mb-3">{tx.correctRatio}: {optimal}/{totalPlayed} ({pct}%)</p>
+        <div className="space-y-1.5 max-h-48 overflow-y-auto pr-1">
+          {played.map((p, i) => (
+            <div key={i} className="flex items-center gap-2 text-sm">
+              <span>{qualityIcon[p.quality]}</span>
+              <span className="text-slate-300 truncate">{p.title}</span>
+              <span className="text-xs text-slate-500 ml-auto whitespace-nowrap">{qualityLabel[p.quality]}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
+  // ─── CTA Block ───
+  const CTABlockGame = () => (
+    <div className="bg-gradient-to-r from-[#2563EB]/20 to-purple-500/20 border border-[#2563EB]/30 rounded-xl p-5 mb-6 text-center">
+      <p className="text-sm text-slate-300 mb-3">{tx.ctaBlock}</p>
+      <Link
+        href={tx.ctaHref}
+        onClick={() => track.ctaClick("adventure_summary_cta")}
+        className="inline-flex items-center gap-2 bg-[#2563EB] text-white font-semibold py-2.5 px-5 rounded-xl hover:bg-[#1d4ed8] transition-colors text-sm"
+      >
+        <MessageCircle size={16} /> {tx.cta}
+      </Link>
+    </div>
+  );
 
   // ─── Metrics Bar ───
   const MetricsBar = () => {
@@ -569,14 +647,10 @@ export default function Adventure({ lang = "ru" }: Props) {
 
         <MetricsBar />
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link
-            href={tx.ctaHref}
-            onClick={() => track.ctaClick("adventure_gameover")}
-            className="inline-flex items-center justify-center gap-2 bg-[#2563EB] text-white font-semibold py-3 px-6 rounded-xl hover:bg-[#1d4ed8] transition-colors"
-          >
-            <MessageCircle size={18} /> {tx.cta}
-          </Link>
+        <SummaryBlock />
+        <CTABlockGame />
+
+        <div className="flex justify-center">
           <button
             onClick={() => dispatch({ type: "RESTART" })}
             className="inline-flex items-center justify-center gap-2 bg-white/10 border border-white/20 text-white font-semibold py-3 px-6 rounded-xl hover:bg-white/20 transition-colors"
@@ -608,14 +682,10 @@ export default function Adventure({ lang = "ru" }: Props) {
 
         <MetricsBar />
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link
-            href={tx.ctaHref}
-            onClick={() => track.ctaClick("adventure_victory")}
-            className="inline-flex items-center justify-center gap-2 bg-[#2563EB] text-white font-semibold py-3 px-6 rounded-xl hover:bg-[#1d4ed8] transition-colors"
-          >
-            <MessageCircle size={18} /> {tx.cta}
-          </Link>
+        <SummaryBlock />
+        <CTABlockGame />
+
+        <div className="flex justify-center">
           <button
             onClick={() => dispatch({ type: "RESTART" })}
             className="inline-flex items-center justify-center gap-2 bg-white/10 border border-white/20 text-white font-semibold py-3 px-6 rounded-xl hover:bg-white/20 transition-colors"
