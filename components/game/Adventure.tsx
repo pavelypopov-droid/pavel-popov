@@ -115,8 +115,6 @@ function reducer(state: GameState, action: Action): GameState {
 
     case "CHOOSE": {
       const newMetrics = applyEffects(state.metrics, action.effects);
-      // Natural energy drain each choice
-      newMetrics.energy = Math.max(0, newMetrics.energy - 3);
       const go = isGameOver(newMetrics);
       return {
         ...state,
@@ -133,7 +131,7 @@ function reducer(state: GameState, action: Action): GameState {
 
     case "TIMEOUT": {
       const newMetrics = applyEffects(state.metrics, action.effects);
-      newMetrics.energy = Math.max(0, newMetrics.energy - 10); // penalty
+      newMetrics.energy = Math.max(0, newMetrics.energy - 5); // timeout penalty
       const go = isGameOver(newMetrics);
       return {
         ...state,
@@ -205,12 +203,18 @@ function reducer(state: GameState, action: Action): GameState {
     case "NEXT_LEVEL": {
       const nextLevel = state.level + 1;
       if (nextLevel >= LEVELS.length) return { ...state, phase: "victory" };
+      // Rest between levels: recover 15 energy (weekend rest)
+      const recoveredMetrics = {
+        ...state.metrics,
+        energy: Math.min(100, state.metrics.energy + 25),
+      };
       return {
         ...state,
         phase: "playing",
         level: nextLevel,
         situation: 0,
         step: 0,
+        metrics: recoveredMetrics,
         showFeedback: false,
         selectedChoice: null,
         feedbackText: "",
@@ -266,6 +270,7 @@ const t = {
     next: "Далее",
     nextLevel: "Следующий уровень",
     levelComplete: "Уровень пройден!",
+    energyRecovery: "Выходные: энергия +25",
     currentMetrics: "Текущие метрики",
     timerExpired: "Время вышло! Вы замешкались, и ситуация ухудшилась.",
     useAI: "Использовать AI",
@@ -295,6 +300,7 @@ const t = {
     next: "Next",
     nextLevel: "Next Level",
     levelComplete: "Level Complete!",
+    energyRecovery: "Weekend rest: energy +25",
     currentMetrics: "Current metrics",
     timerExpired: "Time's up! You hesitated and the situation worsened.",
     useAI: "Use AI",
@@ -509,7 +515,12 @@ export default function Adventure({ lang = "ru" }: Props) {
         <p className="text-slate-400 mb-2">
           {tx.level} {state.level + 1}: {levelInfo.name[lang]}
         </p>
-        <p className="text-sm text-slate-500 mb-8">{tx.currentMetrics}</p>
+        <p className="text-sm text-slate-500 mb-4">{tx.currentMetrics}</p>
+
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-green-500/10 border border-green-500/20 text-green-400 text-sm font-medium mb-6">
+          <Zap size={14} />
+          {tx.energyRecovery}
+        </div>
 
         <MetricsBar />
 

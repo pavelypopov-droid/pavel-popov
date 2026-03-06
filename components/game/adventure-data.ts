@@ -131,7 +131,7 @@ export const LEVELS: Level[] = [
           },
           {
             label: { ru: "Эскалировать на ИБ и запросить reset", en: "Escalate to security and request a reset" },
-            effects: { energy: -15, reputation: 5 },
+            effects: { energy: -10, reputation: 5 },
             feedback: {
               ru: "Правильный подход! ИБ оценили. Отчёт задержится на час, но всё по правилам.",
               en: "Right approach! Security appreciated it. Report delayed by an hour, but everything is by the book.",
@@ -280,14 +280,14 @@ export const LEVELS: Level[] = [
         choices: [
           {
             label: { ru: "War room, отключить телефон CEO", en: "War room, mute CEO's calls" },
-            effects: { energy: -20, reputation: 10 },
+            effects: { energy: -15, reputation: 10 },
             feedback: {
               ru: "Собрали команду, нашли проблему, починили за 2 часа. CEO оценил результат.",
               en: "Assembled the team, found the issue, fixed in 2 hours. CEO appreciated the result.",
             },
             weight: 8,
             random: 0.3,
-            altEffects: { energy: -20, reputation: -20 },
+            altEffects: { energy: -15, reputation: -20 },
             altFeedback: {
               ru: "Починить не удалось — проблема глубже. 4 часа даунтайма. CEO в ярости.",
               en: "Couldn't fix it — the issue was deeper. 4 hours of downtime. CEO is furious.",
@@ -358,7 +358,7 @@ export const LEVELS: Level[] = [
           },
           {
             label: { ru: "Забрать исходники и допилить самим", en: "Take the source code and finish in-house" },
-            effects: { energy: -25, karma: 5 },
+            effects: { energy: -15, karma: 5 },
             feedback: {
               ru: "Героический путь. Команда уважает, но устанет.",
               en: "Heroic path. Team respects it, but will get tired.",
@@ -540,7 +540,7 @@ export const LEVELS: Level[] = [
           },
           {
             label: { ru: "Откатить на rule-based, параллельно фиксить", en: "Roll back to rule-based, fix in parallel" },
-            effects: { energy: -20, reputation: -5 },
+            effects: { energy: -10, reputation: -5 },
             feedback: {
               ru: "Грамотный подход! Бот работает предсказуемо, AI фиксится в фоне.",
               en: "Smart approach! Bot works predictably, AI gets fixed in the background.",
@@ -612,7 +612,7 @@ export const LEVELS: Level[] = [
           },
           {
             label: { ru: "Показать roadmap автоматизации AML на 6 мес", en: "Present 6-month AML automation roadmap" },
-            effects: { energy: -15, reputation: 5, budget: -1 },
+            effects: { energy: -10, reputation: 5, budget: -1 },
             feedback: {
               ru: "Профессиональный подход. Штраф уменьшен, дали отсрочку.",
               en: "Professional approach. Fine reduced, given a grace period.",
@@ -645,7 +645,7 @@ export const LEVELS: Level[] = [
           },
           {
             label: { ru: "Восстановить из бэкапа + ручная сверка", en: "Restore from backup + manual reconciliation" },
-            effects: { energy: -25, budget: -1 },
+            effects: { energy: -15, budget: -1 },
             feedback: {
               ru: "2 бессонные ночи, но данные восстановлены на 95%. Потом — разбор полётов.",
               en: "2 sleepless nights, but 95% of data recovered. Then — post-mortem.",
@@ -785,7 +785,7 @@ export const LEVELS: Level[] = [
           },
           {
             label: { ru: "Ввести грейды и прозрачную систему", en: "Introduce grades and transparent system" },
-            effects: { energy: -20, budget: -2, karma: 15 },
+            effects: { energy: -10, budget: -2, karma: 15 },
             feedback: {
               ru: "Долгосрочное решение. Через 3 месяца все понимают, как формируется ЗП.",
               en: "Long-term solution. In 3 months, everyone understands how salary is formed.",
@@ -842,7 +842,7 @@ export const LEVELS: Level[] = [
           },
           {
             label: { ru: "«Обсудим, что можно с урезанным бюджетом»", en: "'Let\\'s discuss what we can do with the cut budget'" },
-            effects: { energy: -15, reputation: 10 },
+            effects: { energy: -10, reputation: 10 },
             feedback: {
               ru: "Конструктивный подход! CEO уважает. Нашли способ оптимизировать.",
               en: "Constructive approach! CEO respects it. Found ways to optimize.",
@@ -875,7 +875,7 @@ export const LEVELS: Level[] = [
           },
           {
             label: { ru: "Переучить людей на другие роли", en: "Retrain people for other roles" },
-            effects: { budget: -5, energy: -20, karma: 15 },
+            effects: { budget: -5, energy: -10, karma: 15 },
             feedback: {
               ru: "Дорого и долго, но люди благодарны. Компания получает лояльных сотрудников с новыми навыками.",
               en: "Expensive and slow, but people are grateful. Company gets loyal employees with new skills.",
@@ -917,7 +917,7 @@ export const LEVELS: Level[] = [
         choices: [
           {
             label: { ru: "Закрыть и начать заново с MVP", en: "Shut down and start over with MVP" },
-            effects: { budget: -1, energy: -15, reputation: -10 },
+            effects: { budget: -1, energy: -10, reputation: -10 },
             feedback: {
               ru: "Больно, но правильно. MVP за 6 месяцев вместо бесконечного проекта.",
               en: "Painful, but right. MVP in 6 months instead of an endless project.",
@@ -1000,7 +1000,7 @@ export const LEVELS: Level[] = [
             choices: [
               {
                 label: { ru: "Ехать в дата-центр лично", en: "Go to the data center personally" },
-                effects: { energy: -15 },
+                effects: { energy: -10 },
                 feedback: { ru: "Вы на месте. Теперь нужно решить проблему с генератором.", en: "You're on site. Now you need to solve the generator issue." },
                 weight: 7,
               },
@@ -1030,7 +1030,7 @@ export const LEVELS: Level[] = [
             choices: [
               {
                 label: { ru: "Купить дизель за свои и выставить счёт", en: "Buy diesel with own money, invoice later" },
-                effects: { energy: -10, reputation: 10 },
+                effects: { energy: -5, reputation: 10 },
                 feedback: { ru: "Героически! Генератор заработал. Бухгалтерия в шоке от чека.", en: "Heroic! Generator started. Accounting is shocked by the receipt." },
                 weight: 7,
               },
@@ -1045,7 +1045,7 @@ export const LEVELS: Level[] = [
               },
               {
                 label: { ru: "Звонить подрядчику — срочная доставка", en: "Call contractor — emergency delivery" },
-                effects: { energy: -10, budget: -1 },
+                effects: { energy: -5, budget: -1 },
                 feedback: { ru: "Подрядчик приехал за час. Дорого, но работает.", en: "Contractor arrived in an hour. Expensive, but it works." },
                 weight: 8,
               },
@@ -1075,7 +1075,7 @@ export const LEVELS: Level[] = [
               },
               {
                 label: { ru: "RCA-отчёт + план предотвращения", en: "RCA report + prevention plan" },
-                effects: { energy: -15, reputation: 15 },
+                effects: { energy: -10, reputation: 15 },
                 feedback: { ru: "Профессиональный подход! Совет директоров впечатлён системностью.", en: "Professional approach! Board is impressed by the systematic response." },
                 weight: 9,
               },
@@ -1106,11 +1106,11 @@ export const LEVELS: Level[] = [
             choices: [
               {
                 label: { ru: "Показать метрики: uptime, скорость, безопасность", en: "Show metrics: uptime, speed, security" },
-                effects: { energy: -10 },
+                effects: { energy: -5 },
                 feedback: { ru: "Цифры убедительны, но совет хочет видеть бизнес-результат.", en: "Numbers are convincing, but the board wants business results." },
                 weight: 6,
                 random: 0.5,
-                altEffects: { energy: -10, reputation: 5 },
+                altEffects: { energy: -5, reputation: 5 },
                 altFeedback: { ru: "Бывший IT-шник в совете оценил технические метрики.", en: "Former IT person on the board appreciated the technical metrics." },
               },
               {
@@ -1124,11 +1124,11 @@ export const LEVELS: Level[] = [
               },
               {
                 label: { ru: "Показать демо нового продукта", en: "Show demo of the new product" },
-                effects: { energy: -15, reputation: 15 },
+                effects: { energy: -10, reputation: 15 },
                 feedback: { ru: "Демо сработало! Совет впечатлён.", en: "Demo worked! Board is impressed." },
                 weight: 8,
                 random: 0.3,
-                altEffects: { energy: -15, reputation: -20 },
+                altEffects: { energy: -10, reputation: -20 },
                 altFeedback: { ru: "Демо зависло на глазах у всего совета. Тишина в зале.", en: "Demo froze in front of the entire board. Silence in the room." },
               },
             ],
@@ -1148,7 +1148,7 @@ export const LEVELS: Level[] = [
               },
               {
                 label: { ru: "«Расскажу, что мы сделали вместо этого»", en: "'Let me tell you what we did instead'" },
-                effects: { energy: -10, reputation: 5 },
+                effects: { energy: -5, reputation: 5 },
                 feedback: { ru: "Переключение фокуса сработало. Показали приоритеты.", en: "Focus shift worked. Showed priorities." },
                 weight: 8,
               },
