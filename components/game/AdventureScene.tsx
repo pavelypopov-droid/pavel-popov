@@ -5,13 +5,14 @@ import { memo } from "react";
 interface Props {
   tags: string[];
   energy: number;
+  className?: string;
 }
 
-function AdventureScene({ tags, energy }: Props) {
+function AdventureScene({ tags, energy, className = "" }: Props) {
   const has = (tag: string) => tags.includes(tag);
 
   return (
-    <div className="relative w-full max-w-[400px] mx-auto mb-6 select-none">
+    <div className={`relative w-full select-none ${className}`}>
       <svg
         viewBox="0 0 400 250"
         className="w-full h-auto rounded-xl border border-white/10 bg-[#1a1f35]"

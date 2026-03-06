@@ -479,7 +479,7 @@ export default function Adventure({ lang = "ru" }: Props) {
     </div>
   );
 
-  // ─── Metrics Bar ───
+  // ─── Metrics Bar (full — for end screens) ───
   const MetricsBar = () => {
     const items = [
       { icon: Zap, label: tx.energy, value: state.metrics.energy, suffix: "%", max: 100, color: state.metrics.energy < 25 ? "text-red-400" : "text-yellow-400" },
@@ -508,25 +508,58 @@ export default function Adventure({ lang = "ru" }: Props) {
     );
   };
 
-  // ─── Timer Bar ───
-  const TimerBar = () => {
-    if (state.showFeedback || state.phase !== "playing") return null;
-    const pct = (state.timer / TIMER_SECONDS) * 100;
-    const isUrgent = state.timer < 10;
+  // ─── Compact Metrics (inline — for playing screen) ───
+  const CompactMetrics = () => {
+    const items = [
+      { icon: Zap, value: `${state.metrics.energy}%`, color: state.metrics.energy < 25 ? "text-red-400" : "text-yellow-400" },
+      { icon: ShieldCheck, value: `${state.metrics.reputation}%`, color: state.metrics.reputation < 25 ? "text-red-400" : "text-blue-400" },
+      { icon: Briefcase, value: `$${state.metrics.budget}M`, color: state.metrics.budget < 5 ? "text-red-400" : "text-green-400" },
+      { icon: Heart, value: `${state.metrics.karma}`, color: state.metrics.karma < 15 ? "text-red-400" : "text-purple-400" },
+    ];
     return (
-      <div className="mb-4">
-        <div className="flex justify-between items-center mb-1">
-          <span className="text-xs text-slate-500">{tx.timeout}</span>
-          <span className={`text-xs font-mono font-bold ${isUrgent ? "text-red-400 animate-pulse" : "text-slate-400"}`}>
-            {state.timer}s
+      <div className="flex items-center gap-3 mb-3">
+        {items.map(({ icon: Icon, value, color }) => (
+          <div key={value} className="flex items-center gap-1">
+            <Icon size={12} className={color} />
+            <span className={`text-xs font-bold ${color}`}>{value}</span>
+          </div>
+        ))}
+      </div>
+    );
+  };
+
+  // ─── Progress + Timer Bar (combined) ───
+  const ProgressTimerBar = ({ completedCount, total }: { completedCount: number; total: number }) => {
+    const progressPct = ((completedCount + 1) / total) * 100;
+    const timerPct = (state.timer / TIMER_SECONDS) * 100;
+    const isUrgent = state.timer < 10;
+    const showTimer = !state.showFeedback && state.phase === "playing";
+    return (
+      <div className="mb-3">
+        <div className="flex items-center justify-between mb-1">
+          <span className="text-[10px] text-slate-500">
+            {tx.level} {state.level + 1} · {completedCount + 1}/{total}
           </span>
+          {showTimer && (
+            <span className={`text-[10px] font-mono font-bold ${isUrgent ? "text-red-400 animate-pulse" : "text-slate-400"}`}>
+              {state.timer}s
+            </span>
+          )}
         </div>
-        <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
-          <motion.div
-            className={`h-full rounded-full ${isUrgent ? "bg-red-500" : pct < 50 ? "bg-yellow-500" : "bg-blue-500"}`}
-            animate={{ width: `${pct}%` }}
-            transition={{ duration: 0.3 }}
-          />
+        <div className="h-1 bg-white/10 rounded-full overflow-hidden">
+          {showTimer ? (
+            <motion.div
+              className={`h-full rounded-full ${isUrgent ? "bg-red-500" : timerPct < 50 ? "bg-yellow-500" : "bg-blue-500"}`}
+              animate={{ width: `${timerPct}%` }}
+              transition={{ duration: 0.3 }}
+            />
+          ) : (
+            <motion.div
+              className="h-full bg-[#2563EB] rounded-full"
+              animate={{ width: `${progressPct}%` }}
+              transition={{ duration: 0.3 }}
+            />
+          )}
         </div>
       </div>
     );
@@ -721,150 +754,140 @@ export default function Adventure({ lang = "ru" }: Props) {
   const total = getTotalSituations();
 
   return (
-    <div className="max-w-2xl mx-auto">
-      <MetricsBar />
-
-      {/* Progress */}
-      <div className="flex items-center justify-between mb-4">
-        <span className="text-xs text-slate-500">
+    <div className="max-w-4xl mx-auto lg:grid lg:grid-cols-2 lg:gap-8">
+      {/* Left column: scene (desktop: sticky, mobile: collapsible) */}
+      <div className={`${state.showFeedback ? "hidden lg:block" : ""} lg:sticky lg:top-24 lg:self-start`}>
+        <AdventureScene tags={scene} energy={state.metrics.energy} className="max-h-[150px] lg:max-h-none" />
+        <p className="text-[10px] text-slate-500 mt-1 hidden lg:block">
           {tx.level} {state.level + 1}: {currentLevel.name[lang]}
-        </span>
-        <span className="text-xs text-slate-500">
-          {completedCount + 1} {tx.of} {total}
-        </span>
-      </div>
-      <div className="h-1 bg-white/10 rounded-full overflow-hidden mb-4">
-        <motion.div
-          className="h-full bg-[#2563EB] rounded-full"
-          animate={{ width: `${((completedCount + 1) / total) * 100}%` }}
-          transition={{ duration: 0.3 }}
-        />
+        </p>
       </div>
 
-      <TimerBar />
+      {/* Right column: gameplay */}
+      <div>
+        <CompactMetrics />
+        <ProgressTimerBar completedCount={completedCount} total={total} />
 
-      {/* Scene */}
-      <AdventureScene tags={scene} energy={state.metrics.energy} />
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={`${state.level}-${state.situation}-${state.step}`}
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -30 }}
+            transition={{ duration: 0.25 }}
+          >
+            <h3 className="text-base sm:text-lg font-bold text-white mb-1">
+              {currentSituation.title[lang]}
+              {hasSteps && (
+                <span className="text-xs text-slate-500 ml-2">
+                  ({tx.step} {state.step + 1}/{totalSteps})
+                </span>
+              )}
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-400 mb-3 line-clamp-3">{description}</p>
 
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={`${state.level}-${state.situation}-${state.step}`}
-          initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -30 }}
-          transition={{ duration: 0.25 }}
-        >
-          <h3 className="text-lg sm:text-xl font-bold text-white mb-1">
-            {currentSituation.title[lang]}
-            {hasSteps && (
-              <span className="text-sm text-slate-500 ml-2">
-                ({tx.step} {state.step + 1}/{totalSteps})
-              </span>
-            )}
-          </h3>
-          <p className="text-sm text-slate-400 mb-5">{description}</p>
-
-          {/* AI Card button (CAIO only) */}
-          {state.role === "caio" && !state.showFeedback && (
-            <div className="mb-4">
-              <button
-                onClick={handleUseAI}
-                disabled={state.aiCardUsed}
-                className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
-                  state.aiCardUsed
-                    ? "bg-white/5 text-slate-600 cursor-not-allowed"
-                    : "bg-purple-600/20 border border-purple-500/30 text-purple-300 hover:bg-purple-600/30"
-                }`}
-              >
-                <Bot size={16} />
-                {state.aiCardUsed ? tx.aiUsed : tx.useAI}
-              </button>
-            </div>
-          )}
-
-          {/* Choices */}
-          <div className="space-y-2">
-            {choices.map((choice, i) => {
-              const isSelected = state.selectedChoice === i;
-              const isHighlighted = state.aiHighlight === i;
-              const bestChoice = choices.reduce((best, c, idx) => c.weight > choices[best].weight ? idx : best, 0);
-              const isBest = i === bestChoice;
-
-              return (
+            {/* AI Card button (CAIO only) */}
+            {state.role === "caio" && !state.showFeedback && (
+              <div className="mb-3">
                 <button
-                  key={i}
-                  onClick={() => handleChoice(i)}
-                  disabled={state.showFeedback}
-                  className={`w-full text-left px-4 py-3 rounded-xl border transition-all text-sm ${
-                    isHighlighted
-                      ? "bg-green-500/20 border-green-500 text-green-200 ring-2 ring-green-500/50"
-                      : isSelected
-                      ? isBest
-                        ? "bg-green-500/20 border-green-500 text-white"
-                        : "bg-amber-500/20 border-amber-500 text-white"
-                      : state.showFeedback && isBest
-                      ? "bg-green-500/10 border-green-500/30 text-slate-300"
-                      : state.showFeedback
-                      ? "bg-white/5 border-white/5 text-slate-500"
-                      : "bg-white/5 border-white/10 text-slate-300 hover:bg-white/10 hover:border-white/20"
+                  onClick={handleUseAI}
+                  disabled={state.aiCardUsed}
+                  className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+                    state.aiCardUsed
+                      ? "bg-white/5 text-slate-600 cursor-not-allowed"
+                      : "bg-purple-600/20 border border-purple-500/30 text-purple-300 hover:bg-purple-600/30"
                   }`}
                 >
-                  <span className="font-medium">{choice.label[lang]}</span>
+                  <Bot size={14} />
+                  {state.aiCardUsed ? tx.aiUsed : tx.useAI}
                 </button>
-              );
-            })}
-          </div>
+              </div>
+            )}
 
-          {/* Timeout indicator */}
-          {state.selectedChoice === -1 && state.showFeedback && (
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-sm text-red-400 mt-3"
-            >
-              {tx.timerExpired}
-            </motion.p>
-          )}
+            {/* Choices */}
+            <div className="space-y-1.5">
+              {choices.map((choice, i) => {
+                const isSelected = state.selectedChoice === i;
+                const isHighlighted = state.aiHighlight === i;
+                const bestChoice = choices.reduce((best, c, idx) => c.weight > choices[best].weight ? idx : best, 0);
+                const isBest = i === bestChoice;
 
-          {/* Feedback */}
-          {state.showFeedback && state.feedbackText && state.selectedChoice !== -1 && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mt-4 bg-white/5 border border-white/10 rounded-xl p-4"
-            >
-              <p className="text-sm text-slate-300">{state.feedbackText}</p>
-            </motion.div>
-          )}
+                return (
+                  <button
+                    key={i}
+                    onClick={() => handleChoice(i)}
+                    disabled={state.showFeedback}
+                    className={`w-full text-left px-3 py-2 rounded-xl border transition-all text-xs sm:text-sm ${
+                      isHighlighted
+                        ? "bg-green-500/20 border-green-500 text-green-200 ring-2 ring-green-500/50"
+                        : isSelected
+                        ? isBest
+                          ? "bg-green-500/20 border-green-500 text-white"
+                          : "bg-amber-500/20 border-amber-500 text-white"
+                        : state.showFeedback && isBest
+                        ? "bg-green-500/10 border-green-500/30 text-slate-300"
+                        : state.showFeedback
+                        ? "bg-white/5 border-white/5 text-slate-500"
+                        : "bg-white/5 border-white/10 text-slate-300 hover:bg-white/10 hover:border-white/20"
+                    }`}
+                  >
+                    <span className="font-medium">{choice.label[lang]}</span>
+                  </button>
+                );
+              })}
+            </div>
 
-          {/* Pavel's comment (after last step of situation or non-step situation) */}
-          {state.showFeedback && (
-            (!hasSteps || state.step === totalSteps - 1) && (
+            {/* Timeout indicator */}
+            {state.selectedChoice === -1 && state.showFeedback && (
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="text-xs text-red-400 mt-2"
+              >
+                {tx.timerExpired}
+              </motion.p>
+            )}
+
+            {/* Feedback */}
+            {state.showFeedback && state.feedbackText && state.selectedChoice !== -1 && (
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="mt-4 bg-[#2563EB]/10 border border-[#2563EB]/20 rounded-xl p-4"
+                className="mt-3 bg-white/5 border border-white/10 rounded-xl p-3"
               >
-                <p className="text-sm font-semibold text-blue-300 mb-1">{tx.pavelComment}</p>
-                <p className="text-sm text-slate-300">{currentSituation.pavelComment[lang]}</p>
+                <p className="text-xs sm:text-sm text-slate-300">{state.feedbackText}</p>
               </motion.div>
-            )
-          )}
-        </motion.div>
-      </AnimatePresence>
+            )}
 
-      {/* Next button */}
-      {state.showFeedback && state.phase === "playing" && (
-        <div className="flex justify-end mt-6">
-          <button
-            onClick={handleNext}
-            className="inline-flex items-center gap-2 bg-[#2563EB] text-white font-semibold py-3 px-6 rounded-xl hover:bg-[#1d4ed8] transition-colors"
-          >
-            {tx.next} <ArrowRight size={18} />
-          </button>
-        </div>
-      )}
+            {/* Pavel's comment (after last step of situation or non-step situation) */}
+            {state.showFeedback && (
+              (!hasSteps || state.step === totalSteps - 1) && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="mt-2 bg-[#2563EB]/10 border border-[#2563EB]/20 rounded-xl p-3"
+                >
+                  <p className="text-xs font-semibold text-blue-300 mb-0.5">{tx.pavelComment}</p>
+                  <p className="text-xs sm:text-sm text-slate-300">{currentSituation.pavelComment[lang]}</p>
+                </motion.div>
+              )
+            )}
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Next button */}
+        {state.showFeedback && state.phase === "playing" && (
+          <div className="flex justify-end mt-4">
+            <button
+              onClick={handleNext}
+              className="inline-flex items-center gap-2 bg-[#2563EB] text-white font-semibold py-2.5 px-5 rounded-xl hover:bg-[#1d4ed8] transition-colors text-sm"
+            >
+              {tx.next} <ArrowRight size={16} />
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
