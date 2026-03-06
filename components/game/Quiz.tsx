@@ -171,7 +171,7 @@ function getTopServices(scores: [number, number, number, number]): string[] {
 
 // Simple SVG radar chart
 function RadarChart({ scores, labels }: { scores: [number, number, number, number]; labels: string[] }) {
-  const size = 200;
+  const size = 280;
   const cx = size / 2;
   const cy = size / 2;
   const r = 80;
@@ -185,7 +185,7 @@ function RadarChart({ scores, labels }: { scores: [number, number, number, numbe
   const gridLevels = [2.5, 5, 7.5, 10];
 
   return (
-    <svg viewBox={`0 0 ${size} ${size}`} className="w-full max-w-[280px] mx-auto">
+    <svg viewBox={`0 0 ${size} ${size}`} className="w-full max-w-[300px] mx-auto">
       {/* Grid */}
       {gridLevels.map((level) => {
         const pts = angles.map((a) => getPoint(a, level));
@@ -224,7 +224,7 @@ function RadarChart({ scores, labels }: { scores: [number, number, number, numbe
       })}
       {/* Labels */}
       {angles.map((a, i) => {
-        const p = getPoint(a, 12.5);
+        const p = getPoint(a, 13);
         return (
           <text
             key={i}
@@ -232,7 +232,7 @@ function RadarChart({ scores, labels }: { scores: [number, number, number, numbe
             y={p.y}
             textAnchor="middle"
             dominantBaseline="middle"
-            className="fill-slate-300 text-[11px] font-medium"
+            className="fill-slate-300 text-[10px] font-medium"
           >
             {labels[i]} ({scores[i]})
           </text>
@@ -363,12 +363,12 @@ export default function Quiz({ lang = "ru" }: Props) {
         >
           <h3 className="text-xl sm:text-2xl font-bold text-white mb-6">{q.question}</h3>
 
-          <div className="space-y-3">
+          <div className="space-y-2 sm:space-y-3">
             {q.options.map((opt, i) => (
               <button
                 key={i}
                 onClick={() => handleAnswer(i)}
-                className={`w-full text-left px-5 py-4 rounded-xl border transition-all ${
+                className={`w-full text-left px-3 py-2.5 sm:px-5 sm:py-4 rounded-xl border transition-all text-sm sm:text-base ${
                   currentAnswer === i
                     ? "bg-[#2563EB]/20 border-[#2563EB] text-white"
                     : "bg-white/5 border-white/10 text-slate-300 hover:bg-white/10 hover:border-white/20"

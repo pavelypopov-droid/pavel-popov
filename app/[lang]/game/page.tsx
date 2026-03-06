@@ -51,38 +51,38 @@ export default function GamePage() {
       {/* Tabs */}
       <section className="pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-center gap-2 mb-12">
+          <div className="flex flex-wrap justify-center gap-2 mb-12">
             <button
               onClick={() => setTab("quiz")}
-              className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all ${
+              className={`inline-flex items-center gap-1.5 px-4 py-2.5 sm:px-6 sm:py-3 rounded-xl text-sm sm:text-base font-semibold transition-all ${
                 tab === "quiz"
                   ? "bg-[#2563EB] text-white"
                   : "bg-white/5 text-slate-400 hover:bg-white/10 hover:text-white border border-white/10"
               }`}
             >
-              <ClipboardCheck size={18} />
+              <ClipboardCheck size={16} className="sm:w-[18px] sm:h-[18px]" />
               {tx.tabQuiz}
             </button>
             <button
               onClick={() => setTab("sim")}
-              className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all ${
+              className={`inline-flex items-center gap-1.5 px-4 py-2.5 sm:px-6 sm:py-3 rounded-xl text-sm sm:text-base font-semibold transition-all ${
                 tab === "sim"
                   ? "bg-[#2563EB] text-white"
                   : "bg-white/5 text-slate-400 hover:bg-white/10 hover:text-white border border-white/10"
               }`}
             >
-              <Building2 size={18} />
+              <Building2 size={16} className="sm:w-[18px] sm:h-[18px]" />
               {tx.tabSim}
             </button>
             <button
               onClick={() => setTab("adventure")}
-              className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all ${
+              className={`inline-flex items-center gap-1.5 px-4 py-2.5 sm:px-6 sm:py-3 rounded-xl text-sm sm:text-base font-semibold transition-all ${
                 tab === "adventure"
                   ? "bg-[#2563EB] text-white"
                   : "bg-white/5 text-slate-400 hover:bg-white/10 hover:text-white border border-white/10"
               }`}
             >
-              <Sword size={18} />
+              <Sword size={16} className="sm:w-[18px] sm:h-[18px]" />
               {tx.tabAdv}
             </button>
           </div>

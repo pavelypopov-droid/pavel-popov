@@ -248,16 +248,16 @@ export default function Simulator({ lang = "ru" }: Props) {
 
   // Metrics bar
   const MetricsBar = () => (
-    <div className="grid grid-cols-4 gap-2 sm:gap-4 mb-8">
+    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4 mb-8">
       {[
         { icon: DollarSign, label: tx.metricsLabels.budget, value: `$${metrics.budget}M`, color: metrics.budget < 10 ? "text-red-400" : "text-green-400" },
         { icon: Users, label: tx.metricsLabels.team, value: `${metrics.team}`, color: metrics.team < 5 ? "text-red-400" : "text-blue-400" },
         { icon: Star, label: tx.metricsLabels.reputation, value: `${metrics.reputation}%`, color: metrics.reputation < 50 ? "text-red-400" : "text-amber-400" },
         { icon: Clock, label: tx.metricsLabels.time, value: `${metrics.time}m`, color: metrics.time < 4 ? "text-red-400" : "text-slate-300" },
       ].map(({ icon: Icon, label, value, color }) => (
-        <div key={label} className="bg-white/5 border border-white/10 rounded-xl p-3 text-center">
-          <Icon size={16} className={`mx-auto mb-1 ${color}`} />
-          <p className={`text-lg font-bold ${color}`}>{value}</p>
+        <div key={label} className="bg-white/5 border border-white/10 rounded-xl p-2 sm:p-3 text-center">
+          <Icon size={14} className={`mx-auto mb-1 ${color} sm:w-4 sm:h-4`} />
+          <p className={`text-base sm:text-lg font-bold ${color}`}>{value}</p>
           <p className="text-[10px] sm:text-xs text-slate-500">{label}</p>
         </div>
       ))}
@@ -335,15 +335,15 @@ export default function Simulator({ lang = "ru" }: Props) {
         <div className="text-6xl mb-6">🏦</div>
         <h3 className="text-2xl font-bold text-white mb-4">{tx.title}</h3>
         <p className="text-slate-400 mb-8">{tx.subtitle}</p>
-        <div className="grid grid-cols-4 gap-3 mb-8">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 mb-8">
           {[
             { icon: DollarSign, label: tx.metricsLabels.budget, value: `$${INITIAL_METRICS.budget}M` },
             { icon: Users, label: tx.metricsLabels.team, value: `${INITIAL_METRICS.team}` },
             { icon: Star, label: tx.metricsLabels.reputation, value: `${INITIAL_METRICS.reputation}%` },
             { icon: Clock, label: tx.metricsLabels.time, value: `${INITIAL_METRICS.time}m` },
           ].map(({ icon: Icon, label, value }) => (
-            <div key={label} className="bg-white/5 border border-white/10 rounded-xl p-3 text-center">
-              <Icon size={16} className="mx-auto mb-1 text-slate-400" />
+            <div key={label} className="bg-white/5 border border-white/10 rounded-xl p-2 sm:p-3 text-center">
+              <Icon size={14} className="mx-auto mb-1 text-slate-400 sm:w-4 sm:h-4" />
               <p className="text-sm font-bold text-white">{value}</p>
               <p className="text-[10px] text-slate-500">{label}</p>
             </div>
@@ -392,13 +392,13 @@ export default function Simulator({ lang = "ru" }: Props) {
           <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">{scenario.title}</h3>
           <p className="text-slate-400 mb-6">{scenario.description}</p>
 
-          <div className="space-y-3">
+          <div className="space-y-2 sm:space-y-3">
             {scenario.choices.map((choice, i) => (
               <button
                 key={i}
                 onClick={() => handleChoice(i)}
                 disabled={showFeedback}
-                className={`w-full text-left px-5 py-4 rounded-xl border transition-all ${
+                className={`w-full text-left px-3 py-2.5 sm:px-5 sm:py-4 rounded-xl border transition-all text-sm sm:text-base ${
                   selectedChoice === i
                     ? i === scenario.pavelChoice
                       ? "bg-green-500/20 border-green-500 text-white"

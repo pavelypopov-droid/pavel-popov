@@ -488,7 +488,7 @@ export default function Adventure({ lang = "ru" }: Props) {
       { icon: Heart, label: tx.karma, value: state.metrics.karma, suffix: "", max: 100, color: state.metrics.karma < 15 ? "text-red-400" : "text-purple-400" },
     ];
     return (
-      <div className="grid grid-cols-4 gap-2 mb-6">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-6">
         {items.map(({ icon: Icon, label, value, suffix, max, color }) => (
           <div key={label} className="bg-white/5 border border-white/10 rounded-xl p-2 sm:p-3 text-center">
             <Icon size={14} className={`mx-auto mb-1 ${color}`} />
@@ -597,7 +597,7 @@ export default function Adventure({ lang = "ru" }: Props) {
           })}
         </div>
 
-        <div className="grid grid-cols-4 gap-2">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
           {[
             { icon: Zap, label: tx.energy, value: `${INITIAL_METRICS.energy}%` },
             { icon: ShieldCheck, label: tx.reputation, value: `${INITIAL_METRICS.reputation}%` },
@@ -757,7 +757,7 @@ export default function Adventure({ lang = "ru" }: Props) {
     <div className="max-w-4xl mx-auto lg:grid lg:grid-cols-2 lg:gap-8">
       {/* Left column: scene (desktop: sticky, mobile: collapsible) */}
       <div className={`${state.showFeedback ? "hidden lg:block" : ""} lg:sticky lg:top-24 lg:self-start`}>
-        <AdventureScene tags={scene} energy={state.metrics.energy} className="max-h-[150px] lg:max-h-none" />
+        <AdventureScene tags={scene} energy={state.metrics.energy} className="max-h-[140px] lg:max-h-none overflow-hidden" />
         <p className="text-[10px] text-slate-500 mt-1 hidden lg:block">
           {tx.level} {state.level + 1}: {currentLevel.name[lang]}
         </p>
