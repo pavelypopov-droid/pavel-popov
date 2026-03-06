@@ -142,16 +142,29 @@ export default function Header({ lang }: Props) {
             </Link>
           </div>
 
-          {/* Mobile menu button */}
-          <button
-            className={`lg:hidden p-2 rounded-lg transition-colors ${
-              scrolled ? "text-[#374151]" : "text-white"
-            }`}
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Menu"
-          >
-            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Mobile: game button + menu button */}
+          <div className="flex items-center gap-2 lg:hidden">
+            <Link
+              href={gameHref}
+              className={`inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1.5 rounded-lg border transition-colors ${
+                scrolled
+                  ? "border-[#F59E0B]/30 text-[#F59E0B] hover:bg-[#F59E0B]/10"
+                  : "border-[#F59E0B]/40 text-[#F59E0B] hover:bg-[#F59E0B]/10"
+              }`}
+            >
+              <Gamepad2 size={14} />
+              {gameLabel}
+            </Link>
+            <button
+              className={`p-2 rounded-lg transition-colors ${
+                scrolled ? "text-[#374151]" : "text-white"
+              }`}
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label="Menu"
+            >
+              {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </div>
 

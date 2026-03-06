@@ -757,7 +757,7 @@ export default function Adventure({ lang = "ru" }: Props) {
     <div className="max-w-4xl mx-auto lg:grid lg:grid-cols-2 lg:gap-8">
       {/* Left column: scene (desktop: sticky, mobile: collapsible) */}
       <div className={`${state.showFeedback ? "hidden lg:block" : ""} lg:sticky lg:top-24 lg:self-start`}>
-        <AdventureScene tags={scene} energy={state.metrics.energy} className="max-h-[140px] lg:max-h-none overflow-hidden" />
+        <AdventureScene tags={scene} energy={state.metrics.energy} />
         <p className="text-[10px] text-slate-500 mt-1 hidden lg:block">
           {tx.level} {state.level + 1}: {currentLevel.name[lang]}
         </p>
