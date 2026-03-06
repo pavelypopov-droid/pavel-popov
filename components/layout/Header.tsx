@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Gamepad2 } from "lucide-react";
 import Button from "@/components/ui/Button";
 
 const navLinksRu = [
@@ -51,6 +51,8 @@ export default function Header({ lang }: Props) {
   const navLinks = isEn ? navLinksEn : navLinksRu;
   const alternate = getAlternateLang(pathname);
   const contactHref = isEn ? "/en/contacts" : "/contacts";
+  const gameHref = isEn ? "/en/game" : "/ru/game";
+  const gameLabel = isEn ? "Play" : "Играть";
   const ctaLabel = isEn ? "Discuss project" : "Обсудить проект";
   const logoName = isEn ? "Pavel Popov" : "Павел Попов";
   const homeHref = isEn ? "/en" : "/";
@@ -124,6 +126,17 @@ export default function Header({ lang }: Props) {
             >
               {alternate.label}
             </Link>
+            <Link
+              href={gameHref}
+              className={`inline-flex items-center gap-1.5 text-sm font-semibold px-3 py-1.5 rounded-lg border transition-colors ${
+                scrolled
+                  ? "border-[#F59E0B]/30 text-[#F59E0B] hover:bg-[#F59E0B]/10"
+                  : "border-[#F59E0B]/40 text-[#F59E0B] hover:bg-[#F59E0B]/10"
+              }`}
+            >
+              <Gamepad2 size={15} />
+              {gameLabel}
+            </Link>
             <Link href={contactHref}>
               <Button size="sm">{ctaLabel}</Button>
             </Link>
@@ -156,6 +169,14 @@ export default function Header({ lang }: Props) {
                 {link.label}
               </Link>
             ))}
+            <Link
+              href={gameHref}
+              className="px-4 py-3 rounded-lg text-sm font-medium text-[#F59E0B] hover:bg-[#FEF3C7] transition-colors inline-flex items-center gap-2"
+              onClick={() => setMobileOpen(false)}
+            >
+              <Gamepad2 size={16} />
+              {gameLabel}
+            </Link>
             <div className="pt-2 border-t border-slate-100 mt-2 flex items-center justify-between">
               <Link
                 href={alternate.href}
