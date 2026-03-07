@@ -48,14 +48,21 @@ const t = {
         options: ["Зрелый DWH", "Разрозненные базы", "Excel-файлы", "Ничего нет"],
       },
       {
-        question: "Регуляторная отчётность (ЦБ)",
-        options: ["Автоматизирована", "Частично автоматизирована", "Ручная", "Не актуально"],
+        question: "", // dynamic — set by getQuestion5()
+        options: [], // dynamic
       },
       {
         question: "Главный вызов сейчас",
         options: ["Масштабирование", "Команда и кадры", "AI и автоматизация", "Регуляторика", "Стратегия"],
       },
     ],
+    q5: {
+      bank: { question: "Регуляторная отчётность (ЦБ)", options: ["Автоматизирована", "Частично автоматизирована", "Ручная", "Не сдаём"] },
+      fintech: { question: "Регуляторная отчётность (ЦБ)", options: ["Автоматизирована", "Частично автоматизирована", "Ручная", "Не сдаём"] },
+      telecom: { question: "Отраслевая отчётность и комплаенс", options: ["Автоматизирована", "Частично автоматизирована", "Ручная", "Минимальная"] },
+      gov: { question: "Межведомственная отчётность", options: ["Автоматизирована", "Частично автоматизирована", "Ручная", "Минимальная"] },
+      other: { question: "Отчётность и комплаенс", options: ["Автоматизирована", "Частично автоматизирована", "Ручная", "Минимальная"] },
+    },
     services: {
       strategy: { name: "IT & Digital Strategy", desc: "Аудит и стратегия на 3–5 лет" },
       ai: { name: "AI Implementation", desc: "Речевая аналитика, ML-скоринг, фрод-мониторинг" },
@@ -105,14 +112,21 @@ const t = {
         options: ["Mature DWH", "Scattered databases", "Excel files", "Nothing"],
       },
       {
-        question: "Regulatory reporting (Central Bank)",
-        options: ["Automated", "Partially automated", "Manual", "Not applicable"],
+        question: "", // dynamic
+        options: [], // dynamic
       },
       {
         question: "Main challenge right now",
         options: ["Scaling", "Team & talent", "AI & automation", "Regulatory", "Strategy"],
       },
     ],
+    q5: {
+      bank: { question: "Regulatory reporting (Central Bank)", options: ["Automated", "Partially automated", "Manual", "Don't submit"] },
+      fintech: { question: "Regulatory reporting (Central Bank)", options: ["Automated", "Partially automated", "Manual", "Don't submit"] },
+      telecom: { question: "Industry reporting & compliance", options: ["Automated", "Partially automated", "Manual", "Minimal"] },
+      gov: { question: "Inter-agency reporting", options: ["Automated", "Partially automated", "Manual", "Minimal"] },
+      other: { question: "Reporting & compliance", options: ["Automated", "Partially automated", "Manual", "Minimal"] },
+    },
     services: {
       strategy: { name: "IT & Digital Strategy", desc: "Audit and 3–5 year strategy" },
       ai: { name: "AI Implementation", desc: "Speech analytics, ML scoring, fraud monitoring" },
@@ -333,7 +347,17 @@ export default function Quiz({ lang = "ru" }: Props) {
     );
   }
 
-  const q = tx.questions[step];
+  // Dynamic question 5 based on industry (question 0 answer)
+  const getQuestion = (idx: number) => {
+    if (idx === 5) {
+      const industry = answers[0];
+      const key = industry === 0 ? "bank" : industry === 1 ? "telecom" : industry === 2 ? "gov" : industry === 3 ? "fintech" : "other";
+      return tx.q5[key];
+    }
+    return tx.questions[idx];
+  };
+
+  const q = getQuestion(step);
   const currentAnswer = answers[step];
 
   return (
