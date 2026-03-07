@@ -1,9 +1,42 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { track } from "@/components/seo/Analytics";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
+
+// Country code data: [code, dialCode, flag]
+const COUNTRY_CODES: [string, string, string][] = [
+  ["UZ", "+998", "\u{1F1FA}\u{1F1FF}"],
+  ["RU", "+7", "\u{1F1F7}\u{1F1FA}"],
+  ["KZ", "+7", "\u{1F1F0}\u{1F1FF}"],
+  ["KG", "+996", "\u{1F1F0}\u{1F1EC}"],
+  ["TJ", "+992", "\u{1F1F9}\u{1F1EF}"],
+  ["TM", "+993", "\u{1F1F9}\u{1F1F2}"],
+  ["AZ", "+994", "\u{1F1E6}\u{1F1FF}"],
+  ["AM", "+374", "\u{1F1E6}\u{1F1F2}"],
+  ["GE", "+995", "\u{1F1EC}\u{1F1EA}"],
+  ["BY", "+375", "\u{1F1E7}\u{1F1FE}"],
+  ["MD", "+373", "\u{1F1F2}\u{1F1E9}"],
+  ["UA", "+380", "\u{1F1FA}\u{1F1E6}"],
+  ["US", "+1", "\u{1F1FA}\u{1F1F8}"],
+  ["GB", "+44", "\u{1F1EC}\u{1F1E7}"],
+  ["DE", "+49", "\u{1F1E9}\u{1F1EA}"],
+  ["AE", "+971", "\u{1F1E6}\u{1F1EA}"],
+  ["TR", "+90", "\u{1F1F9}\u{1F1F7}"],
+  ["CN", "+86", "\u{1F1E8}\u{1F1F3}"],
+  ["IN", "+91", "\u{1F1EE}\u{1F1F3}"],
+];
+
+function getCountryFromCookie(): string {
+  if (typeof document === "undefined") return "";
+  const match = document.cookie.match(/visitor-country=([A-Z]{2})/);
+  return match ? match[1] : "";
+}
+
+function findCountry(code: string): [string, string, string] | undefined {
+  return COUNTRY_CODES.find(([c]) => c === code);
+}
 
 type FormData = {
   name: string;
@@ -28,7 +61,7 @@ const t = {
     emailRequired: "Введите email",
     emailInvalid: "Некорректный email",
     phone: "Телефон",
-    phonePlaceholder: "+7 / +998",
+    phonePlaceholder: "Номер телефона",
     subject: "Тема обращения",
     subjectPlaceholder: "Выберите тему",
     subjects: ["Консультация", "AI проект", "IT стратегия", "Подбор команды", "Другое"],
@@ -57,7 +90,7 @@ const t = {
     emailRequired: "Please enter your email",
     emailInvalid: "Invalid email address",
     phone: "Phone",
-    phonePlaceholder: "+7 / +998",
+    phonePlaceholder: "Phone number",
     subject: "Subject",
     subjectPlaceholder: "Select a subject",
     subjects: ["Consultation", "AI Project", "IT Strategy", "Team Assembly", "Other"],
@@ -82,7 +115,30 @@ interface Props {
 
 export default function ContactForm({ lang = "ru" }: Props) {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [selectedCountry, setSelectedCountry] = useState<[string, string, string]>(COUNTRY_CODES[0]);
+  const [showCountryDropdown, setShowCountryDropdown] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const tx = lang === "en" ? t.en : t.ru;
+
+  // Auto-detect country from cookie set by middleware
+  useEffect(() => {
+    const code = getCountryFromCookie();
+    if (code) {
+      const found = findCountry(code);
+      if (found) setSelectedCountry(found);
+    }
+  }, []);
+
+  // Close dropdown on click outside
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setShowCountryDropdown(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
 
   const {
     register,
@@ -93,6 +149,10 @@ export default function ContactForm({ lang = "ru" }: Props) {
 
   const onSubmit = async (data: FormData) => {
     if (data._honeypot) return; // spam trap
+    // Prepend country code if phone doesn't start with +
+    if (data.phone && !data.phone.startsWith("+")) {
+      data.phone = `${selectedCountry[1]} ${data.phone}`;
+    }
     setStatus("sending");
 
     try {
@@ -211,12 +271,44 @@ export default function ContactForm({ lang = "ru" }: Props) {
               <label className="block text-sm font-medium text-[#374151] mb-1">
                 {tx.phone}
               </label>
-              <input
-                type="tel"
-                {...register("phone")}
-                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 hover:border-slate-300 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-[#2563EB]"
-                placeholder={tx.phonePlaceholder}
-              />
+              <div className="relative flex" ref={dropdownRef}>
+                <button
+                  type="button"
+                  onClick={() => setShowCountryDropdown(!showCountryDropdown)}
+                  className="flex items-center gap-1 px-2.5 py-2.5 rounded-l-xl border border-r-0 border-slate-200 hover:border-slate-300 bg-slate-50 text-sm transition-colors shrink-0"
+                >
+                  <span className="text-base leading-none">{selectedCountry[2]}</span>
+                  <span className="text-[#374151] font-medium">{selectedCountry[1]}</span>
+                  <svg className="w-3 h-3 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                </button>
+                {showCountryDropdown && (
+                  <div className="absolute top-full left-0 mt-1 w-48 bg-white border border-slate-200 rounded-xl shadow-lg z-50 max-h-52 overflow-y-auto">
+                    {COUNTRY_CODES.map(([code, dial, flag]) => (
+                      <button
+                        key={code}
+                        type="button"
+                        className={`w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-[#EFF6FF] transition-colors ${
+                          selectedCountry[0] === code ? "bg-[#EFF6FF] text-[#2563EB]" : "text-[#374151]"
+                        }`}
+                        onClick={() => {
+                          setSelectedCountry([code, dial, flag]);
+                          setShowCountryDropdown(false);
+                        }}
+                      >
+                        <span className="text-base">{flag}</span>
+                        <span className="font-medium">{dial}</span>
+                        <span className="text-[#94A3B8]">{code}</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
+                <input
+                  type="tel"
+                  {...register("phone")}
+                  className="w-full px-3 py-2.5 rounded-r-xl border border-slate-200 hover:border-slate-300 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-[#2563EB]"
+                  placeholder={tx.phonePlaceholder}
+                />
+              </div>
             </div>
           </div>
 
