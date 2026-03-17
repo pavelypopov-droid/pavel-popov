@@ -24,14 +24,13 @@ const navLinksEn = [
 
 function getAlternateLang(pathname: string): { href: string; label: string } {
   if (pathname.startsWith("/en")) {
-    // Switch to RU: remove /en prefix
-    const ruPath = pathname.replace(/^\/en/, "") || "/";
-    return { href: ruPath, label: "RU" };
+    // Switch to RU: replace /en prefix with /ru
+    const subPath = pathname.replace(/^\/en/, "") || "";
+    return { href: "/ru" + subPath, label: "RU" };
   } else {
-    // Switch to EN: remove /ru prefix (if any) then add /en prefix
-    const strippedPath = pathname.replace(/^\/ru/, "") || "/";
-    const enPath = "/en" + (strippedPath === "/" ? "" : strippedPath);
-    return { href: enPath, label: "EN" };
+    // Switch to EN: replace /ru prefix (if any) with /en
+    const subPath = pathname.replace(/^\/ru/, "") || "";
+    return { href: "/en" + subPath, label: "EN" };
   }
 }
 
@@ -47,15 +46,21 @@ export default function Header({ lang }: Props) {
   // Auto-detect language from pathname if not explicitly provided
   const detectedLang = lang ?? (pathname.startsWith("/en") ? "en" : "ru");
   const isEn = detectedLang === "en";
+  // Use /ru/ prefix when user is explicitly on /ru/ path (e.g. non-CIS user who switched to Russian)
+  const useRuPrefix = pathname.startsWith("/ru");
 
-  const navLinks = isEn ? navLinksEn : navLinksRu;
+  const navLinks = isEn
+    ? navLinksEn
+    : useRuPrefix
+      ? navLinksRu.map((l) => ({ ...l, href: "/ru" + l.href }))
+      : navLinksRu;
   const alternate = getAlternateLang(pathname);
-  const contactHref = isEn ? "/en/contacts" : "/contacts";
+  const contactHref = isEn ? "/en/contacts" : useRuPrefix ? "/ru/contacts" : "/contacts";
   const gameHref = isEn ? "/en/game" : "/ru/game";
   const gameLabel = isEn ? "Play" : "Играть";
   const ctaLabel = isEn ? "Discuss project" : "Обсудить проект";
   const logoName = isEn ? "Pavel Popov" : "Павел Попов";
-  const homeHref = isEn ? "/en" : "/";
+  const homeHref = isEn ? "/en" : useRuPrefix ? "/ru" : "/";
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);
