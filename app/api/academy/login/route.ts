@@ -27,9 +27,13 @@ export async function POST(request: NextRequest) {
   if (!password) {
     return NextResponse.json({ error: "No password provided" }, { status: 400 });
   }
-  const expected = process.env.ACADEMY_PASSWORD;
+  const expected = (process.env.ACADEMY_PASSWORD || "").trim();
 
-  if (!expected || password !== expected) {
+  if (!expected) {
+    return NextResponse.json({ error: "Server misconfigured", debug: "no_env" }, { status: 500 });
+  }
+
+  if (password.trim() !== expected) {
     return NextResponse.json({ error: "Invalid password" }, { status: 401 });
   }
 
