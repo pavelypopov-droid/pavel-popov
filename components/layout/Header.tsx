@@ -12,6 +12,7 @@ const navLinksRu = [
   { href: "/about", label: "О себе" },
   { href: "/blog", label: "Блог" },
   { href: "/contacts", label: "Контакты" },
+  { href: "/ru/academy", label: "Academy" },
 ];
 
 const navLinksEn = [
@@ -20,6 +21,7 @@ const navLinksEn = [
   { href: "/en/about", label: "About" },
   { href: "/en/blog", label: "Blog" },
   { href: "/en/contacts", label: "Contact" },
+  { href: "/en/academy", label: "Academy" },
 ];
 
 function getAlternateLang(pathname: string): { href: string; label: string } {
