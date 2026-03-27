@@ -6,14 +6,13 @@ const COOKIE_NAME = "academy_token";
 const COOKIE_MAX_AGE = 30 * 24 * 60 * 60; // 30 days
 
 export async function POST(request: NextRequest) {
-  let body;
+  const text = await request.text();
+  let password: string | undefined;
   try {
-    body = await request.json();
+    password = JSON.parse(text)?.password;
   } catch {
-    return NextResponse.json({ error: "Invalid request" }, { status: 400 });
+    return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
   }
-
-  const password = body?.password;
   const expected = process.env.ACADEMY_PASSWORD;
 
   if (!expected || password !== expected) {
