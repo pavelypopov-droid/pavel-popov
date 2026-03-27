@@ -1,10 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
 
+export const runtime = "nodejs";
+
 const COOKIE_NAME = "academy_token";
 const COOKIE_MAX_AGE = 30 * 24 * 60 * 60; // 30 days
 
 export async function POST(request: NextRequest) {
-  const { password } = await request.json();
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    return NextResponse.json({ error: "Invalid request" }, { status: 400 });
+  }
+
+  const password = body?.password;
   const expected = process.env.ACADEMY_PASSWORD;
 
   if (!expected || password !== expected) {
