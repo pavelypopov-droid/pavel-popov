@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://beyondcore.pro
+
+# Sitemaps
+Sitemap: https://beyondcore.pro/sitemap.xml

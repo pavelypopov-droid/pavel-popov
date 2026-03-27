@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
+import { LayoutWrapper } from "@/components/layout/LayoutWrapper";
 import JsonLd from "@/components/seo/JsonLd";
 import Analytics from "@/components/seo/Analytics";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -103,18 +102,7 @@ export default function RootLayout({
         <Analytics />
         <JsonLd />
         <SpeedInsights />
-        <Header />
-        <main>{children}</main>
-        <Footer />
-        {/* Mobile sticky CTA */}
-        <div className="fixed bottom-4 left-4 right-4 z-40 lg:hidden pb-safe">
-          <a
-            href="/contacts"
-            className="flex items-center justify-center w-full bg-[#2563EB] text-white font-semibold py-3.5 px-6 rounded-xl shadow-lg hover:bg-[#1d4ed8] transition-colors"
-          >
-            Обсудить проект →
-          </a>
-        </div>
+        <LayoutWrapper>{children}</LayoutWrapper>
       </body>
     </html>
   );

@@ -32,11 +32,11 @@ export default function AcademyLoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50">
+    <div className="min-h-screen flex items-center justify-center bg-[#0f0d1a]">
       <div className="w-full max-w-sm">
-        <div className="bg-white rounded-2xl shadow-lg p-8">
-          <h1 className="text-2xl font-bold text-slate-900 mb-2 text-center">Academy</h1>
-          <p className="text-sm text-slate-500 mb-6 text-center">
+        <div className="bg-[#1a1726] rounded-2xl border border-[#2d2845] p-8">
+          <h1 className="text-2xl font-bold text-[#e8e4f0] mb-2 text-center">Academy</h1>
+          <p className="text-sm text-[#9890ab] mb-6 text-center">
             {lang === "ru" ? "Введите пароль для доступа" : "Enter password to access"}
           </p>
 
@@ -47,11 +47,11 @@ export default function AcademyLoginPage() {
               onChange={(e) => setPassword(e.target.value)}
               placeholder={lang === "ru" ? "Пароль" : "Password"}
               autoFocus
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 text-slate-900 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none mb-4"
+              className="w-full px-4 py-3 rounded-xl border border-[#2d2845] bg-[#0f0d1a] text-[#e8e4f0] text-sm focus:border-[#7c5cfc] focus:ring-1 focus:ring-[#7c5cfc] outline-none mb-4"
             />
 
             {error && (
-              <p className="text-red-500 text-sm mb-4 text-center">
+              <p className="text-red-400 text-sm mb-4 text-center">
                 {lang === "ru" ? "Неверный пароль" : "Invalid password"}
               </p>
             )}
@@ -59,7 +59,7 @@ export default function AcademyLoginPage() {
             <button
               type="submit"
               disabled={loading || !password}
-              className="w-full py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-300 text-white rounded-xl font-medium text-sm transition-colors"
+              className="w-full py-3 bg-[#7c5cfc] hover:bg-[#9479ff] disabled:bg-[#2d2845] text-white rounded-xl font-medium text-sm transition-colors"
             >
               {loading
                 ? (lang === "ru" ? "Вход..." : "Signing in...")

@@ -74,8 +74,8 @@ export default function DashboardPage() {
 
   return (
     <div className="max-w-3xl">
-      <h1 className="text-3xl font-bold text-slate-900 mb-2">{t.title}</h1>
-      <p className="text-slate-500 mb-8">{t.subtitle}</p>
+      <h1 className="text-3xl font-bold text-[#e8e4f0] mb-2">{t.title}</h1>
+      <p className="text-[#9890ab] mb-8">{t.subtitle}</p>
 
       {/* Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
@@ -88,63 +88,63 @@ export default function DashboardPage() {
       <div className="flex flex-wrap gap-3 mb-8">
         <Link
           href={`${base}/guide`}
-          className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium transition-colors"
+          className="px-5 py-2.5 bg-[#7c5cfc] hover:bg-[#9479ff] text-white rounded-lg text-sm font-medium transition-colors"
         >
           {t.guide}
         </Link>
         <Link
           href={`${base}/flashcards`}
-          className="px-5 py-2.5 bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 rounded-lg text-sm font-medium transition-colors"
+          className="px-5 py-2.5 bg-[#1a1726] hover:bg-[#231f33] border border-[#2d2845] text-[#c4bdd4] rounded-lg text-sm font-medium transition-colors"
         >
           {t.flashcards}
         </Link>
         <Link
           href={`${base}/quiz`}
-          className="px-5 py-2.5 bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 rounded-lg text-sm font-medium transition-colors"
+          className="px-5 py-2.5 bg-[#1a1726] hover:bg-[#231f33] border border-[#2d2845] text-[#c4bdd4] rounded-lg text-sm font-medium transition-colors"
         >
           {t.quiz}
         </Link>
         <Link
           href={`${base}/mock`}
-          className="px-5 py-2.5 bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 rounded-lg text-sm font-medium transition-colors"
+          className="px-5 py-2.5 bg-[#1a1726] hover:bg-[#231f33] border border-[#2d2845] text-[#c4bdd4] rounded-lg text-sm font-medium transition-colors"
         >
           {t.mock}
         </Link>
       </div>
 
       {/* Courses */}
-      <h2 className="text-lg font-semibold text-slate-900 mb-4">{t.courses}</h2>
+      <h2 className="text-lg font-semibold text-[#e8e4f0] mb-4">{t.courses}</h2>
       <div className="space-y-3 mb-8">
         {courses.map((course) => {
           const known = course.flashcards.filter((c) => progress.knownCards.includes(c.id)).length;
           const total = course.flashcards.length;
           const pct = total > 0 ? Math.round((known / total) * 100) : 0;
           return (
-            <div key={course.id} className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
+            <div key={course.id} className="bg-[#1a1726] border border-[#2d2845] rounded-2xl p-4">
               <div className="flex justify-between items-start mb-3">
                 <div>
-                  <div className="font-medium text-sm text-slate-900 flex items-center gap-2">
+                  <div className="font-medium text-sm text-[#e8e4f0] flex items-center gap-2">
                     {course.examRelevant && (
-                      <span className="text-xs bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded font-medium">
+                      <span className="text-xs bg-[#7c5cfc]/15 text-[#7c5cfc] px-1.5 py-0.5 rounded font-medium">
                         CCA-F
                       </span>
                     )}
                     {course.title}
                   </div>
-                  <div className="text-xs text-slate-400 mt-0.5">{course.description}</div>
+                  <div className="text-xs text-[#7a7290] mt-0.5">{course.description}</div>
                 </div>
-                <div className="text-xs text-slate-400 shrink-0 ml-4">
+                <div className="text-xs text-[#7a7290] shrink-0 ml-4">
                   {course.flashcards.length} {t.cards} · {course.knowledgeBase.length} {t.articles}
                 </div>
               </div>
               {/* Progress bar */}
-              <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
+              <div className="h-2 bg-[#231f33] rounded-full overflow-hidden">
                 <div
-                  className="h-full bg-blue-600 rounded-full transition-all duration-300"
+                  className="h-full bg-[#7c5cfc] rounded-full transition-all duration-300"
                   style={{ width: `${pct}%` }}
                 />
               </div>
-              <div className="text-xs text-slate-400 mt-1">
+              <div className="text-xs text-[#7a7290] mt-1">
                 {known}/{total} ({pct}%)
               </div>
             </div>
@@ -154,9 +154,9 @@ export default function DashboardPage() {
 
       {/* Last Quiz */}
       {lastScore && (
-        <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm mb-8">
-          <div className="text-sm font-medium text-slate-900 mb-1">{t.lastQuiz}</div>
-          <div className="text-xs text-slate-500">
+        <div className="bg-[#1a1726] border border-[#2d2845] rounded-2xl p-4 mb-8">
+          <div className="text-sm font-medium text-[#e8e4f0] mb-1">{t.lastQuiz}</div>
+          <div className="text-xs text-[#9890ab]">
             {lastScore.correct}/{lastScore.total} {t.correct} (
             {Math.round((lastScore.correct / lastScore.total) * 100)}%) ·{" "}
             {new Date(lastScore.date).toLocaleDateString()}
@@ -165,7 +165,7 @@ export default function DashboardPage() {
       )}
 
       {/* Exam Domains */}
-      <h2 className="text-lg font-semibold text-slate-900 mb-4">{t.domains}</h2>
+      <h2 className="text-lg font-semibold text-[#e8e4f0] mb-4">{t.domains}</h2>
       <div className="space-y-2">
         {[
           { label: t.domainAgentic, weight: "27%" },
@@ -176,10 +176,10 @@ export default function DashboardPage() {
         ].map((d) => (
           <div
             key={d.label}
-            className="flex justify-between text-sm bg-white border border-slate-200 rounded-xl px-4 py-2.5 shadow-sm"
+            className="flex justify-between text-sm bg-[#1a1726] border border-[#2d2845] rounded-xl px-4 py-2.5"
           >
-            <span className="text-slate-700">{d.label}</span>
-            <span className="text-blue-600 font-mono font-medium">{d.weight}</span>
+            <span className="text-[#c4bdd4]">{d.label}</span>
+            <span className="text-[#7c5cfc] font-mono font-medium">{d.weight}</span>
           </div>
         ))}
       </div>
@@ -189,9 +189,9 @@ export default function DashboardPage() {
 
 function StatCard({ label, value }: { label: string; value: string }) {
   return (
-    <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
-      <div className="text-2xl font-bold text-blue-600">{value}</div>
-      <div className="text-xs text-slate-400 mt-1">{label}</div>
+    <div className="bg-[#1a1726] border border-[#2d2845] rounded-2xl p-4">
+      <div className="text-2xl font-bold text-[#7c5cfc]">{value}</div>
+      <div className="text-xs text-[#7a7290] mt-1">{label}</div>
     </div>
   );
 }

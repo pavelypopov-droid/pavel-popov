@@ -168,37 +168,37 @@ export default function MockExamPage() {
     if (examCards.length === 0) {
       return (
         <div className="max-w-lg mx-auto text-center">
-          <h1 className="text-2xl font-bold text-slate-900 mb-2">{t.title}</h1>
-          <p className="text-slate-500 mb-8">{t.noCards}</p>
+          <h1 className="text-2xl font-bold text-[#e8e4f0] mb-2">{t.title}</h1>
+          <p className="text-[#9890ab] mb-8">{t.noCards}</p>
         </div>
       );
     }
 
     return (
       <div className="max-w-lg mx-auto text-center">
-        <h1 className="text-2xl font-bold text-slate-900 mb-2">{t.title}</h1>
-        <p className="text-slate-500 mb-8">{t.subtitle}</p>
+        <h1 className="text-2xl font-bold text-[#e8e4f0] mb-2">{t.title}</h1>
+        <p className="text-[#9890ab] mb-8">{t.subtitle}</p>
 
         <div className="grid grid-cols-3 gap-4 mb-8">
-          <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
-            <div className="text-2xl font-bold text-blue-600">
+          <div className="bg-[#1a1726] border border-[#2d2845] rounded-2xl p-4">
+            <div className="text-2xl font-bold text-[#7c5cfc]">
               {Math.min(EXAM_QUESTIONS, examCards.length)}
             </div>
-            <div className="text-xs text-slate-400">{t.questions}</div>
+            <div className="text-xs text-[#7a7290]">{t.questions}</div>
           </div>
-          <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
-            <div className="text-2xl font-bold text-blue-600">120</div>
-            <div className="text-xs text-slate-400">{t.time}</div>
+          <div className="bg-[#1a1726] border border-[#2d2845] rounded-2xl p-4">
+            <div className="text-2xl font-bold text-[#7c5cfc]">120</div>
+            <div className="text-xs text-[#7a7290]">{t.time}</div>
           </div>
-          <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
-            <div className="text-2xl font-bold text-blue-600">720</div>
-            <div className="text-xs text-slate-400">{t.passing}</div>
+          <div className="bg-[#1a1726] border border-[#2d2845] rounded-2xl p-4">
+            <div className="text-2xl font-bold text-[#7c5cfc]">720</div>
+            <div className="text-xs text-[#7a7290]">{t.passing}</div>
           </div>
         </div>
 
         <button
           onClick={startExam}
-          className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium text-lg transition-colors"
+          className="w-full py-3 bg-[#7c5cfc] hover:bg-[#9479ff] text-white rounded-lg font-medium text-lg transition-colors"
         >
           {t.start}
         </button>
@@ -210,54 +210,54 @@ export default function MockExamPage() {
   if (phase === "results" && score) {
     return (
       <div className="max-w-lg mx-auto">
-        <h1 className="text-2xl font-bold text-slate-900 mb-6 text-center">{t.score}</h1>
+        <h1 className="text-2xl font-bold text-[#e8e4f0] mb-6 text-center">{t.score}</h1>
 
         <div
-          className={`text-center mb-8 p-6 rounded-2xl border-2 shadow-sm ${
+          className={`text-center mb-8 p-6 rounded-2xl border-2 ${
             score.passed
-              ? "border-emerald-400 bg-emerald-50"
-              : "border-red-400 bg-red-50"
+              ? "border-emerald-400 bg-emerald-400/10"
+              : "border-red-400 bg-red-400/10"
           }`}
         >
           <div
             className={`text-6xl font-bold mb-2 ${
-              score.passed ? "text-emerald-600" : "text-red-600"
+              score.passed ? "text-emerald-400" : "text-red-400"
             }`}
           >
             {score.scaled}
           </div>
-          <div className="text-sm text-slate-400 mb-2">/ {MAX_SCORE}</div>
+          <div className="text-sm text-[#7a7290] mb-2">/ {MAX_SCORE}</div>
           <div
             className={`text-lg font-semibold ${
-              score.passed ? "text-emerald-600" : "text-red-600"
+              score.passed ? "text-emerald-400" : "text-red-400"
             }`}
           >
             {score.passed ? t.passed : t.failed}
           </div>
-          <div className="text-xs text-slate-400 mt-2">{t.passingNote}</div>
-          <div className="text-xs text-slate-400 mt-1">
+          <div className="text-xs text-[#7a7290] mt-2">{t.passingNote}</div>
+          <div className="text-xs text-[#7a7290] mt-1">
             {score.correct}/{score.total} {t.correct.toLowerCase()}
             {score.unanswered > 0 && ` · ${score.unanswered} ${t.unanswered}`}
           </div>
         </div>
 
         {/* Domain breakdown */}
-        <h2 className="text-sm font-semibold text-slate-900 mb-3">{t.domainBreakdown}</h2>
+        <h2 className="text-sm font-semibold text-[#e8e4f0] mb-3">{t.domainBreakdown}</h2>
         <div className="space-y-2 mb-6">
           {Object.entries(score.domainScores).map(([domain, s]) => {
             const pct = Math.round((s.correct / s.total) * 100);
             return (
               <div
                 key={domain}
-                className="bg-white border border-slate-200 rounded-xl px-4 py-2 shadow-sm"
+                className="bg-[#1a1726] border border-[#2d2845] rounded-xl px-4 py-2"
               >
                 <div className="flex justify-between text-sm mb-1">
-                  <span className="text-slate-500">{domain}</span>
-                  <span className={pct >= 70 ? "text-emerald-600" : "text-red-600"}>
+                  <span className="text-[#9890ab]">{domain}</span>
+                  <span className={pct >= 70 ? "text-emerald-400" : "text-red-400"}>
                     {s.correct}/{s.total} ({pct}%)
                   </span>
                 </div>
-                <div className="h-1.5 bg-slate-100 rounded-full">
+                <div className="h-1.5 bg-[#231f33] rounded-full">
                   <div
                     className={`h-full rounded-full transition-all ${
                       pct >= 70 ? "bg-emerald-500" : "bg-red-500"
@@ -273,13 +273,13 @@ export default function MockExamPage() {
         <div className="flex gap-3 mb-6">
           <button
             onClick={startExam}
-            className="flex-1 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium transition-colors"
+            className="flex-1 py-2.5 bg-[#7c5cfc] hover:bg-[#9479ff] text-white rounded-lg text-sm font-medium transition-colors"
           >
             {t.tryAgain}
           </button>
           <button
             onClick={() => setShowReview(!showReview)}
-            className="flex-1 py-2.5 bg-white border border-slate-200 rounded-lg text-sm text-slate-700 hover:bg-slate-50 transition-colors"
+            className="flex-1 py-2.5 bg-[#1a1726] border border-[#2d2845] rounded-lg text-sm text-[#c4bdd4] hover:bg-[#231f33] transition-colors"
           >
             {t.review}
           </button>
@@ -293,25 +293,25 @@ export default function MockExamPage() {
               return (
                 <div
                   key={i}
-                  className={`bg-white border rounded-xl p-4 shadow-sm ${
-                    isCorrect ? "border-emerald-200" : "border-red-200"
+                  className={`bg-[#1a1726] border rounded-xl p-4 ${
+                    isCorrect ? "border-emerald-400/30" : "border-red-400/30"
                   }`}
                 >
-                  <div className="text-xs text-slate-400 mb-1">
+                  <div className="text-xs text-[#7a7290] mb-1">
                     #{i + 1} · {q.domain}
                   </div>
-                  <div className="text-sm font-medium text-slate-900 mb-2">{q.question}</div>
+                  <div className="text-sm font-medium text-[#e8e4f0] mb-2">{q.question}</div>
                   {userAnswer !== undefined && !isCorrect && (
-                    <div className="text-xs text-red-600 mb-1">
+                    <div className="text-xs text-red-400 mb-1">
                       {t.yourAnswer}: {String.fromCharCode(65 + userAnswer)}){" "}
                       {q.options[userAnswer]}
                     </div>
                   )}
-                  <div className="text-xs text-emerald-600 mb-1">
+                  <div className="text-xs text-emerald-400 mb-1">
                     {t.correctAnswer}: {String.fromCharCode(65 + q.answer)}){" "}
                     {q.options[q.answer]}
                   </div>
-                  <div className="text-xs text-slate-400">{q.explanation}</div>
+                  <div className="text-xs text-[#7a7290]">{q.explanation}</div>
                 </div>
               );
             })}
@@ -329,20 +329,20 @@ export default function MockExamPage() {
   return (
     <div className="max-w-2xl mx-auto">
       {/* Header: timer + progress */}
-      <div className="flex justify-between items-center mb-4 sticky top-0 bg-slate-50 py-2 z-10">
+      <div className="flex justify-between items-center mb-4 sticky top-0 bg-[#0f0d1a] py-2 z-10">
         <span
           className={`text-sm font-mono ${
-            isUrgent ? "text-red-600 animate-pulse" : "text-slate-500"
+            isUrgent ? "text-red-400 animate-pulse" : "text-[#9890ab]"
           }`}
         >
           {t.timeLeft}: {formatTime(timeLeft)}
         </span>
-        <span className="text-xs text-slate-400">
+        <span className="text-xs text-[#7a7290]">
           {t.question} {current + 1}/{questions.length}
         </span>
         <button
           onClick={finishExam}
-          className="text-xs text-red-600 hover:text-red-500 border border-red-200 rounded px-2 py-1 transition-colors"
+          className="text-xs text-red-400 hover:text-red-300 border border-red-400/30 rounded px-2 py-1 transition-colors"
         >
           {t.finish}
         </button>
@@ -359,10 +359,10 @@ export default function MockExamPage() {
               onClick={() => goTo(i)}
               className={`w-6 h-6 text-xs rounded flex items-center justify-center transition-colors ${
                 isCurrent
-                  ? "bg-blue-600 text-white"
+                  ? "bg-[#7c5cfc] text-white"
                   : answered
-                    ? "bg-blue-100 text-blue-600"
-                    : "bg-white border border-slate-200 text-slate-400 hover:bg-slate-50"
+                    ? "bg-[#7c5cfc]/20 text-[#7c5cfc]"
+                    : "bg-[#1a1726] border border-[#2d2845] text-[#7a7290] hover:bg-[#231f33]"
               }`}
             >
               {i + 1}
@@ -372,8 +372,8 @@ export default function MockExamPage() {
       </div>
 
       {/* Question */}
-      <div className="text-xs text-blue-600 mb-2">{q.domain}</div>
-      <div className="text-lg font-medium text-slate-900 mb-6">{q.question}</div>
+      <div className="text-xs text-[#7c5cfc] mb-2">{q.domain}</div>
+      <div className="text-lg font-medium text-[#e8e4f0] mb-6">{q.question}</div>
 
       <div className="space-y-2 mb-6">
         {q.options.map((opt, i) => (
@@ -382,11 +382,11 @@ export default function MockExamPage() {
             onClick={() => selectAnswer(i)}
             className={`w-full text-left px-4 py-3 text-sm rounded-xl border transition-colors ${
               answers.get(current) === i
-                ? "bg-blue-50 border-blue-400 text-blue-700"
-                : "bg-white border-slate-200 text-slate-700 hover:bg-slate-50"
+                ? "bg-[#7c5cfc]/15 border-[#7c5cfc] text-[#9479ff]"
+                : "bg-[#1a1726] border-[#2d2845] text-[#c4bdd4] hover:bg-[#231f33]"
             }`}
           >
-            <span className="text-slate-400 mr-2">{String.fromCharCode(65 + i)})</span>
+            <span className="text-[#7a7290] mr-2">{String.fromCharCode(65 + i)})</span>
             {opt}
           </button>
         ))}
@@ -397,7 +397,7 @@ export default function MockExamPage() {
         <button
           onClick={() => goTo(current - 1)}
           disabled={current === 0}
-          className="px-4 py-2 bg-white border border-slate-200 rounded-lg text-sm text-slate-700 hover:bg-slate-50 disabled:opacity-30 transition-colors"
+          className="px-4 py-2 bg-[#1a1726] border border-[#2d2845] rounded-lg text-sm text-[#c4bdd4] hover:bg-[#231f33] disabled:opacity-30 transition-colors"
         >
           {t.prev}
         </button>
@@ -405,14 +405,14 @@ export default function MockExamPage() {
         {current < questions.length - 1 ? (
           <button
             onClick={() => goTo(current + 1)}
-            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium transition-colors"
+            className="px-4 py-2 bg-[#7c5cfc] hover:bg-[#9479ff] text-white rounded-lg text-sm font-medium transition-colors"
           >
             {t.next}
           </button>
         ) : (
           <button
             onClick={finishExam}
-            className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-sm font-medium transition-colors"
+            className="px-4 py-2 bg-emerald-500 hover:bg-emerald-400 text-white rounded-lg text-sm font-medium transition-colors"
           >
             {t.finish}
           </button>

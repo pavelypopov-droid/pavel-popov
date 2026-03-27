@@ -114,15 +114,15 @@ export default function QuizPage() {
   if (phase === "setup") {
     return (
       <div className="max-w-lg mx-auto">
-        <h1 className="text-2xl font-bold text-slate-900 mb-6">{t.title}</h1>
+        <h1 className="text-2xl font-bold text-[#e8e4f0] mb-6">{t.title}</h1>
 
         <div className="space-y-5 mb-6">
           <div>
-            <label className="text-sm text-slate-500 block mb-1.5">{t.courses}</label>
+            <label className="text-sm text-[#9890ab] block mb-1.5">{t.courses}</label>
             <select
               value={courseId ?? ""}
               onChange={(e) => setCourseId(e.target.value || null)}
-              className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2.5 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full bg-[#1a1726] border border-[#2d2845] rounded-lg px-3 py-2.5 text-sm text-[#c4bdd4] focus:outline-none focus:ring-2 focus:ring-[#7c5cfc]"
             >
               <option value="">{t.allMixed}</option>
               {courses.map((c) => (
@@ -134,7 +134,7 @@ export default function QuizPage() {
           </div>
 
           <div>
-            <label className="text-sm text-slate-500 block mb-1.5">{t.questions}</label>
+            <label className="text-sm text-[#9890ab] block mb-1.5">{t.questions}</label>
             <div className="flex gap-2">
               {[10, 20, 50].map((n) => (
                 <button
@@ -142,8 +142,8 @@ export default function QuizPage() {
                   onClick={() => setCount(n)}
                   className={`px-4 py-2 text-sm rounded-lg border transition-colors ${
                     count === n
-                      ? "bg-blue-50 border-blue-300 text-blue-600 font-medium"
-                      : "bg-white border-slate-200 text-slate-500 hover:bg-slate-50"
+                      ? "bg-[#7c5cfc]/15 border-[#7c5cfc]/50 text-[#7c5cfc] font-medium"
+                      : "bg-[#1a1726] border-[#2d2845] text-[#9890ab] hover:bg-[#231f33]"
                   }`}
                 >
                   {n}
@@ -155,7 +155,7 @@ export default function QuizPage() {
 
         <button
           onClick={startQuiz}
-          className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
+          className="w-full py-3 bg-[#7c5cfc] hover:bg-[#9479ff] text-white rounded-lg font-medium transition-colors"
         >
           {t.start}
         </button>
@@ -163,7 +163,7 @@ export default function QuizPage() {
         {/* Quiz History */}
         {progress.quizHistory.length > 0 && (
           <div className="mt-8">
-            <h2 className="text-sm font-medium text-slate-900 mb-3">{t.recent}</h2>
+            <h2 className="text-sm font-medium text-[#e8e4f0] mb-3">{t.recent}</h2>
             <div className="space-y-2">
               {progress.quizHistory
                 .slice(-5)
@@ -173,10 +173,10 @@ export default function QuizPage() {
                   return (
                     <div
                       key={i}
-                      className="flex justify-between text-sm bg-white border border-slate-200 rounded-xl px-4 py-2.5 shadow-sm"
+                      className="flex justify-between text-sm bg-[#1a1726] border border-[#2d2845] rounded-xl px-4 py-2.5"
                     >
-                      <span className="text-slate-600">{new Date(r.date).toLocaleDateString()}</span>
-                      <span className={pct >= 80 ? "text-emerald-600 font-medium" : "text-red-500 font-medium"}>
+                      <span className="text-[#9890ab]">{new Date(r.date).toLocaleDateString()}</span>
+                      <span className={pct >= 80 ? "text-emerald-400 font-medium" : "text-red-400 font-medium"}>
                         {r.correct}/{r.total} ({pct}%)
                       </span>
                     </div>
@@ -195,33 +195,33 @@ export default function QuizPage() {
     const wrongCards = questions.filter((qq) => finalResult.wrong.includes(qq.id));
     return (
       <div className="max-w-lg mx-auto">
-        <h1 className="text-2xl font-bold text-slate-900 mb-2">{t.results}</h1>
+        <h1 className="text-2xl font-bold text-[#e8e4f0] mb-2">{t.results}</h1>
 
         <div
           className={`text-5xl font-bold my-6 ${
-            pct >= 80 ? "text-emerald-600" : pct >= 60 ? "text-blue-600" : "text-red-500"
+            pct >= 80 ? "text-emerald-400" : pct >= 60 ? "text-[#7c5cfc]" : "text-red-400"
           }`}
         >
           {pct}%
         </div>
-        <p className="text-slate-500 mb-6">
+        <p className="text-[#9890ab] mb-6">
           {finalResult.correct} {t.of} {finalResult.total} {t.correct.toLowerCase()}
         </p>
 
         {wrongCards.length > 0 && (
           <div className="mb-6">
-            <h2 className="text-sm font-medium text-slate-900 mb-3">{t.review}</h2>
+            <h2 className="text-sm font-medium text-[#e8e4f0] mb-3">{t.review}</h2>
             <div className="space-y-3">
               {wrongCards.map((wq) => (
                 <div
                   key={wq.id}
-                  className="bg-white border border-red-200 rounded-2xl p-4 text-left shadow-sm"
+                  className="bg-[#1a1726] border border-red-400/30 rounded-2xl p-4 text-left"
                 >
-                  <div className="text-sm font-medium text-slate-900 mb-2">{wq.question}</div>
-                  <div className="text-xs text-emerald-600 mb-1">
+                  <div className="text-sm font-medium text-[#e8e4f0] mb-2">{wq.question}</div>
+                  <div className="text-xs text-emerald-400 mb-1">
                     {t.correct}: {String.fromCharCode(65 + wq.answer)}) {wq.options[wq.answer]}
                   </div>
-                  <div className="text-xs text-slate-500">{wq.explanation}</div>
+                  <div className="text-xs text-[#9890ab]">{wq.explanation}</div>
                 </div>
               ))}
             </div>
@@ -231,13 +231,13 @@ export default function QuizPage() {
         <div className="flex gap-3">
           <button
             onClick={startQuiz}
-            className="flex-1 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium transition-colors"
+            className="flex-1 py-2.5 bg-[#7c5cfc] hover:bg-[#9479ff] text-white rounded-lg text-sm font-medium transition-colors"
           >
             {t.retry}
           </button>
           <button
             onClick={() => setPhase("setup")}
-            className="flex-1 py-2.5 bg-white border border-slate-200 rounded-lg text-sm text-slate-600 hover:bg-slate-50 transition-colors"
+            className="flex-1 py-2.5 bg-[#1a1726] border border-[#2d2845] rounded-lg text-sm text-[#9890ab] hover:bg-[#231f33] transition-colors"
           >
             {t.newQuiz}
           </button>
@@ -253,36 +253,36 @@ export default function QuizPage() {
   return (
     <div className="max-w-lg mx-auto">
       <div className="flex justify-between items-center mb-4">
-        <span className="text-xs text-slate-400">
+        <span className="text-xs text-[#7a7290]">
           {t.question} {current + 1} / {questions.length}
         </span>
-        <span className="text-xs text-blue-600 font-medium">{q.domain}</span>
+        <span className="text-xs text-[#7c5cfc] font-medium">{q.domain}</span>
       </div>
 
       {/* Progress bar */}
-      <div className="h-1.5 bg-slate-100 rounded-full mb-6">
+      <div className="h-1.5 bg-[#231f33] rounded-full mb-6">
         <div
-          className="h-full bg-blue-600 rounded-full transition-all duration-300"
+          className="h-full bg-[#7c5cfc] rounded-full transition-all duration-300"
           style={{ width: `${progressPct}%` }}
         />
       </div>
 
-      <div className="text-lg font-medium text-slate-900 mb-6">{q.question}</div>
+      <div className="text-lg font-medium text-[#e8e4f0] mb-6">{q.question}</div>
 
       <div className="space-y-2 mb-6">
         {q.options.map((opt, i) => {
           let cls =
             "w-full text-left px-4 py-3 text-sm rounded-xl border transition-colors cursor-pointer ";
           if (selected !== null) {
-            if (i === q.answer) cls += "border-emerald-300 bg-emerald-50 text-emerald-700";
-            else if (i === selected) cls += "border-red-300 bg-red-50 text-red-700";
-            else cls += "border-slate-200 bg-white text-slate-500";
+            if (i === q.answer) cls += "border-emerald-400/30 bg-emerald-400/10 text-emerald-400";
+            else if (i === selected) cls += "border-red-400/30 bg-red-400/10 text-red-400";
+            else cls += "border-[#2d2845] bg-[#1a1726] text-[#9890ab]";
           } else {
-            cls += "border-slate-200 bg-white text-slate-700 hover:bg-slate-50 hover:border-slate-300";
+            cls += "border-[#2d2845] bg-[#1a1726] text-[#c4bdd4] hover:bg-[#231f33] hover:border-[#3d3657]";
           }
           return (
             <button key={i} onClick={() => handleSelect(i)} className={cls} disabled={selected !== null}>
-              <span className="text-slate-400 mr-2">{String.fromCharCode(65 + i)})</span>
+              <span className="text-[#7a7290] mr-2">{String.fromCharCode(65 + i)})</span>
               {opt}
             </button>
           );
@@ -291,7 +291,7 @@ export default function QuizPage() {
 
       {selected !== null && (
         <div className="mb-4">
-          <div className="text-sm text-slate-500 bg-slate-50 border border-slate-200 rounded-xl p-4">
+          <div className="text-sm text-[#9890ab] bg-[#0f0d1a] border border-[#2d2845] rounded-xl p-4">
             {q.explanation}
           </div>
         </div>
@@ -300,7 +300,7 @@ export default function QuizPage() {
       {selected !== null && (
         <button
           onClick={next}
-          className="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium transition-colors"
+          className="w-full py-2.5 bg-[#7c5cfc] hover:bg-[#9479ff] text-white rounded-lg text-sm font-medium transition-colors"
         >
           {current + 1 >= questions.length ? t.seeResults : t.next}
         </button>

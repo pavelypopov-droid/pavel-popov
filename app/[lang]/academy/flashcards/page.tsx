@@ -107,14 +107,14 @@ export default function FlashcardsPage() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <h1 className="text-2xl font-bold text-slate-900 mb-6">{t.title}</h1>
+      <h1 className="text-2xl font-bold text-[#e8e4f0] mb-6">{t.title}</h1>
 
       {/* Filters */}
       <div className="flex flex-wrap gap-2 mb-4">
         <select
           value={courseId ?? ""}
           onChange={(e) => setCourseId(e.target.value || null)}
-          className="bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="bg-[#1a1726] border border-[#2d2845] rounded-lg px-3 py-2 text-sm text-[#c4bdd4] focus:outline-none focus:ring-2 focus:ring-[#7c5cfc]"
         >
           <option value="">
             {t.allCourses} ({allCards.length})
@@ -132,8 +132,8 @@ export default function FlashcardsPage() {
             onClick={() => setFilter(f)}
             className={`px-3 py-2 text-sm rounded-lg border transition-colors ${
               filter === f
-                ? "bg-blue-50 border-blue-300 text-blue-600 font-medium"
-                : "bg-white border-slate-200 text-slate-500 hover:bg-slate-50"
+                ? "bg-[#7c5cfc]/15 border-[#7c5cfc]/50 text-[#7c5cfc] font-medium"
+                : "bg-[#1a1726] border-[#2d2845] text-[#9890ab] hover:bg-[#231f33]"
             }`}
           >
             {f === "all" ? t.all : f === "unseen" ? t.unseen : t.repeat}
@@ -142,7 +142,7 @@ export default function FlashcardsPage() {
       </div>
 
       {/* Counter */}
-      <div className="text-xs text-slate-400 mb-4">
+      <div className="text-xs text-[#7a7290] mb-4">
         {cards.length > 0 ? `${index + 1} / ${cards.length}` : t.noCards}
       </div>
 
@@ -164,19 +164,19 @@ export default function FlashcardsPage() {
             >
               {/* Front */}
               <div
-                className="absolute inset-0 bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col"
+                className="absolute inset-0 bg-[#1a1726] border border-[#2d2845] rounded-2xl p-6 flex flex-col"
                 style={{ backfaceVisibility: "hidden" }}
               >
-                <div className="text-xs text-blue-600 font-medium mb-3">{card.domain}</div>
-                <div className="text-lg font-medium text-slate-900 flex-1 flex items-center">
+                <div className="text-xs text-[#7c5cfc] font-medium mb-3">{card.domain}</div>
+                <div className="text-lg font-medium text-[#e8e4f0] flex-1 flex items-center">
                   {card.question}
                 </div>
-                <div className="text-xs text-slate-400 mt-4">{t.flip}</div>
+                <div className="text-xs text-[#7a7290] mt-4">{t.flip}</div>
               </div>
 
               {/* Back */}
               <div
-                className="absolute inset-0 bg-white border border-blue-200 rounded-2xl p-6 shadow-sm flex flex-col overflow-auto"
+                className="absolute inset-0 bg-[#1a1726] border border-[#7c5cfc]/30 rounded-2xl p-6 flex flex-col overflow-auto"
                 style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
               >
                 <div className="space-y-2 mb-4">
@@ -185,15 +185,15 @@ export default function FlashcardsPage() {
                       key={i}
                       className={`text-sm px-3 py-2 rounded-lg border ${
                         i === card.answer
-                          ? "border-emerald-300 bg-emerald-50 text-emerald-700"
-                          : "border-slate-200 text-slate-500"
+                          ? "border-emerald-400/30 bg-emerald-400/10 text-emerald-400"
+                          : "border-[#2d2845] text-[#9890ab]"
                       }`}
                     >
                       {String.fromCharCode(65 + i)}) {opt}
                     </div>
                   ))}
                 </div>
-                <div className="text-sm text-slate-500 mt-auto">{card.explanation}</div>
+                <div className="text-sm text-[#9890ab] mt-auto">{card.explanation}</div>
               </div>
             </div>
           </div>
@@ -202,7 +202,7 @@ export default function FlashcardsPage() {
           <div className="flex gap-3 justify-center">
             <button
               onClick={() => go(-1)}
-              className="px-4 py-2 bg-white border border-slate-200 rounded-lg text-sm text-slate-600 hover:bg-slate-50 transition-colors"
+              className="px-4 py-2 bg-[#1a1726] border border-[#2d2845] rounded-lg text-sm text-[#9890ab] hover:bg-[#231f33] transition-colors"
             >
               {t.prev}
             </button>
@@ -211,7 +211,7 @@ export default function FlashcardsPage() {
                 markRepeat(card.id);
                 go(1);
               }}
-              className="px-4 py-2 bg-red-50 border border-red-200 text-red-600 rounded-lg text-sm hover:bg-red-100 transition-colors"
+              className="px-4 py-2 bg-red-400/10 border border-red-400/30 text-red-400 rounded-lg text-sm hover:bg-red-400/15 transition-colors"
             >
               {t.repeatBtn} (R)
             </button>
@@ -220,18 +220,18 @@ export default function FlashcardsPage() {
                 markKnown(card.id);
                 go(1);
               }}
-              className="px-4 py-2 bg-emerald-50 border border-emerald-200 text-emerald-600 rounded-lg text-sm hover:bg-emerald-100 transition-colors"
+              className="px-4 py-2 bg-emerald-400/10 border border-emerald-400/30 text-emerald-400 rounded-lg text-sm hover:bg-emerald-400/15 transition-colors"
             >
               {t.know} (K)
             </button>
             <button
               onClick={() => go(1)}
-              className="px-4 py-2 bg-white border border-slate-200 rounded-lg text-sm text-slate-600 hover:bg-slate-50 transition-colors"
+              className="px-4 py-2 bg-[#1a1726] border border-[#2d2845] rounded-lg text-sm text-[#9890ab] hover:bg-[#231f33] transition-colors"
             >
               {t.next}
             </button>
           </div>
-          <div className="text-xs text-slate-400 text-center mt-3">{t.keyboard}</div>
+          <div className="text-xs text-[#7a7290] text-center mt-3">{t.keyboard}</div>
         </>
       )}
     </div>
