@@ -30,6 +30,35 @@ export function middleware(request: NextRequest) {
   const country = request.headers.get("x-vercel-ip-country") || "";
 
   if (pathnameHasLocale) {
+    // Academy auth check: protect /*/academy/* except /*/academy/login
+    const academyMatch = pathname.match(/^\/(ru|en)\/academy(\/|$)/);
+    if (academyMatch && !pathname.endsWith("/academy/login")) {
+      const token = request.cookies.get("academy_token")?.value;
+      if (!token) {
+        const lang = academyMatch[1];
+        const url = request.nextUrl.clone();
+        url.pathname = `/${lang}/academy/login`;
+        return NextResponse.redirect(url);
+      }
+      // Verify token not expired
+      try {
+        const data = JSON.parse(Buffer.from(token, "base64").toString());
+        if (!data.auth || data.exp < Date.now()) {
+          const lang = academyMatch[1];
+          const url = request.nextUrl.clone();
+          url.pathname = `/${lang}/academy/login`;
+          const response = NextResponse.redirect(url);
+          response.cookies.delete("academy_token");
+          return response;
+        }
+      } catch {
+        const lang = academyMatch[1];
+        const url = request.nextUrl.clone();
+        url.pathname = `/${lang}/academy/login`;
+        return NextResponse.redirect(url);
+      }
+    }
+
     // Set country cookie for client-side use (phone input)
     const response = NextResponse.next();
     if (country) {

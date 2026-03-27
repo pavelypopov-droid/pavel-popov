@@ -5,5 +5,5 @@ module.exports = {
   robotsTxtOptions: {
     policies: [{ userAgent: "*", allow: "/" }],
   },
-  exclude: ["/api/*"],
+  exclude: ["/api/*", "/*/academy", "/*/academy/*"],
 };
