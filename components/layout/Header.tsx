@@ -12,7 +12,7 @@ const navLinksRu = [
   { href: "/about", label: "О себе" },
   { href: "/blog", label: "Блог" },
   { href: "/contacts", label: "Контакты" },
-  { href: "/ru/academy", label: "Academy" },
+  { href: "/ru/academy", label: "Академия" },
 ];
 
 const navLinksEn = [
