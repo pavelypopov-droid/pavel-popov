@@ -1,9 +1,9 @@
 export const stats = [
-  { value: 25, suffix: "+", label: "лет опыта" },
-  { value: 150, suffix: "+", label: "проектов" },
-  { value: 25, prefix: "$", suffix: "M+", label: "управляемый бюджет" },
-  { value: 10, suffix: "x", label: "рост выручки клиентов" },
-  { value: 6, suffix: "", label: "стран ЦА и СНГ" },
+  { value: 25, suffix: "+", label: "лет опыта", labelEn: "years of experience" },
+  { value: 150, suffix: "+", label: "проектов", labelEn: "projects" },
+  { value: 25, prefix: "$", suffix: "M+", label: "управляемый бюджет", labelEn: "managed budget" },
+  { value: 10, suffix: "x", label: "рост выручки клиентов", labelEn: "client revenue growth" },
+  { value: 6, suffix: "", label: "стран ЦА и СНГ", labelEn: "countries in CA & CIS" },
 ];
 
 export const services = [
@@ -265,22 +265,31 @@ export const testimonials = [
   {
     id: 1,
     name: "Руководитель IT-департамента",
+    nameEn: "Head of IT Department",
     company: "Крупный государственный банк, Узбекистан",
+    companyEn: "Major state bank, Uzbekistan",
     text: "Павел показал редкое сочетание стратегического мышления и способности быстро доводить до результата. За 4 месяца мы прошли путь, который планировали на 2 года.",
+    textEn: "Pavel demonstrated a rare combination of strategic thinking and the ability to deliver results fast. In 4 months we covered ground that was planned for 2 years.",
     avatar: null,
   },
   {
     id: 2,
     name: "CEO",
+    nameEn: "CEO",
     company: "FinTech-компания, Казахстан",
+    companyEn: "FinTech company, Kazakhstan",
     text: "Ценность Павла — в том, что он понимает и бизнес, и технологии одинаково глубоко. Его рекомендации всегда реалистичны и уже содержат план реализации.",
+    textEn: "Pavel's value is that he understands both business and technology equally deeply. His recommendations are always realistic and already contain an implementation plan.",
     avatar: null,
   },
   {
     id: 3,
     name: "Директор по развитию",
+    nameEn: "Business Development Director",
     company: "IT-интегратор, Центральная Азия",
+    companyEn: "IT integrator, Central Asia",
     text: "Благодаря Павлу мы за 6 месяцев стали лидерами рынка речевых технологий. Это казалось нереальным до момента, пока мы не увидели конкретную стратегию и не начали её исполнять.",
+    textEn: "Thanks to Pavel, we became market leaders in speech technologies in just 6 months. It seemed impossible until we saw the specific strategy and started executing it.",
     avatar: null,
   },
 ];

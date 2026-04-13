@@ -48,12 +48,12 @@ export default async function LangHome({ params }: Props) {
   return (
     <>
       <Hero lang={lang as Locale} />
-      <SocialProof />
+      <SocialProof lang={lang as Locale} />
       <ServicesSection lang={lang as Locale} />
       <CasesSection lang={lang as Locale} />
       <PartnersSection lang={lang as Locale} />
       <AboutSection lang={lang as Locale} />
-      <Testimonials />
+      <Testimonials lang={lang as Locale} />
       <GameTeaser lang={lang as Locale} />
       <CTABlock lang={lang as Locale} />
     </>

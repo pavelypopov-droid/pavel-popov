@@ -64,12 +64,12 @@ const languages = [
 ];
 
 const timelineEn: Record<number, { role: string; description: string }> = {
-  0: { role: "Independent IT & FinTech Advisor", description: "Strategic consulting on AI, digital transformation, and IT strategy for banks and fintech companies across Central Asia. Focus on markets of Uzbekistan, Kazakhstan, and Kyrgyzstan." },
-  1: { role: "CTO / Director of AI and Anti-fraud, Banks Soft Systems", description: "Led AI and anti-fraud directions for a FinTech company. Built products and teams for banks across the CIS region." },
-  2: { role: "CEO, IT Company (subsidiary of a Top-5 bank)", description: "Built an IT company from scratch: 120-person team, AI practice, sales structure. 3B+ RUB project portfolio. Stake sold to a strategic investor." },
-  3: { role: "CDO / Head of FinTech Practice, Bell Integrator", description: "Developed fintech and DWH/BI practices at a large IT integrator serving companies with $100M+ in revenue. +$8M in FinTech revenue in 2 years." },
-  4: { role: "CIO, National Bank of Uzbekistan", description: "Led full digital transformation of one of the largest state banks. Built 4 cross-functional IT teams, launched AI practice, managed $25M+ budget." },
-  5: { role: "Head of Speech Technologies Practice", description: "Built a speech tech practice from scratch at a leading CA IT integrator. Achieved market leadership in 6 months. +$3M revenue, 10x year-over-year." },
+  0: { role: "CIO", description: "Digital transformation of one of the largest state banks in Uzbekistan. IT hub, AI projects, 60+ person team, $25M+ budget." },
+  1: { role: "CTO", description: "CTO of an IT company in Central Asia. Speech technologies, AI solutions for banks and telecom operators." },
+  2: { role: "Executive Director", description: "Built an IT company from scratch (subsidiary of PSB bank). 120-person team, AI practice, import substitution." },
+  3: { role: "Business Development Director", description: "Development of digital services for clients with $100M+ revenue. Acquired 2 new clients (top-6 banks), revenue growth of 5B RUB. Team of 100+ people." },
+  4: { role: "Business Development Director", description: "Development of innovative products: digital banking, AI and anti-fraud systems for major banks. Personal portfolio of 1B+ RUB/year, 50+ projects." },
+  5: { role: "IT Leadership Roles", description: "17 years at leading IT companies in Russia. Projects for Sberbank, VTB, Gazprombank, Rosbank and other top banks." },
 };
 
 const countryFlags: Record<string, string> = { UZ: "🇺🇿", CA: "🌐", RU: "🇷🇺" };

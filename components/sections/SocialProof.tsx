@@ -1,7 +1,14 @@
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import { stats } from "@/lib/data";
+import type { Locale } from "@/lib/i18n-config";
 
-export default function SocialProof() {
+interface Props {
+  lang?: Locale;
+}
+
+export default function SocialProof({ lang = "ru" }: Props) {
+  const isEn = lang === "en";
+
   return (
     <section className="bg-white border-b border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -19,7 +26,7 @@ export default function SocialProof() {
                 />
               </span>
               <span className="text-sm text-[#64748B] font-medium">
-                {stat.label}
+                {isEn ? (stat.labelEn || stat.label) : stat.label}
               </span>
             </div>
           ))}
